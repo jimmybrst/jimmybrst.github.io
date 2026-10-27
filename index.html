@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="小谱本">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAE4UlEQVR42u3dzYtWVRwH8Bl9pBojUmQSm0YlKlNaFW0Uok1UuKp1EBRBBNF/EP0HIUQghULrWkVWmwh0E9WmHKaifBm16WGwCGcqzGrfc47ew3PP8dx7P5/lnTt37suXH+ft3pm9svTTvzMdc+v89hny+3N8uXPnvMljo08EGoEGgQaBhjSj2A9qGEnoYi97CGrOhgqNJgcINAg0tNQpTLH50y8a73vtiUeruPA9B/ZnOe7Z00udPI9cSmdDhUaTAwQaBBoEmgEb9eliUkYMdu6Yv+nnUMt51DIiokKDQCPQINAg0DCV2dhnDGpexL3v8UNFRwz6bnVtHNy+/NnJma5lQ4VGkwMEGgQa0oxSG91d7NxQpkOmQoNAg0Aj0CDQcFPN/r32W7Vf8M/1ij/TqfmFABUaTQ4QaBBo6GinsOYO4Mr3Xzbe99rVuaRjb96y0Xjfe+5/REdRhUaTAwQaBBoEGmJGQ73wlJGLFCmjFjnPueYRERUaBBqBBoEGgYYsiq/lyLlmI9fIRd/lHBEpvcZDhUaTAwQaBBrSdHLqO2fn7+DBpye2nTr1URXXHTq3Ns4vdj+7OH2uQqPJAQINAg0CzYD1foF/bGQgppYRjZRzS7nGmq9PhQaBRqBBoEGgYSpZF/jv2Lt7Ytvtc1sb/37ONRt773s4uP3ML5cmN/7+cxUPq5ZzTlnjcWVjPbh97cw5FRoEGoEGgYYKjNyC/3W87to12en64SvnrEKDQINAg0Aj0FC7Vqa+Q1PcMbGp72zT3CcSv6321P7uPcWUa8x0fbHp8NjUd0gb0+EqNJocINAg0JCm+NT3yurF8A8qWXMc7GDV0lE8sVRtkGLPddsdd6rQINAg0Ag0CDSUUfUC/9h0atI0eeERipVX30y7xiOvVXstrdx/FRoEGgQagQaBhlJaGeWILcwOLfyPze1f/PoTT6MjNsbnJ7bdvfBgK5lRoUGgEWgQaCgr6wfPm3YUY2JviH938oPGx5ibX/SUb9Chi3ng0DPB7aXf5Fah0eQAgQaBBoGGRoov8E+ZJo+5Zdu+4Pa/fl1u3Kvv++hHymhG7H628VxVaBBoEGgEGgQaiqnmMwahXvKeA2mv7af01jfGy1muI3X0JGU0Ite9aONZqdAg0CDQCDToFFbp3IVvkvbfuXXLVH8vVyfvelbXr05uXA9f9+6Fh1RoEGgQaBBoEGj6qfhnDGJC09xnT6f9X77UEY2Q7fO7OvcQL48vTfX7qSMfbTwrFRoEGoEGgYaBdgpja5xTOhUpnb8udvJq6UCmdBbbeK4qNAg0Ag0CDQINU6l6gX9sNKPmkYvnPnwruP29w69UcX4p9y52/2t+SUCFRpMDBBoEGgSaAcs6ylHzQvBcjh77NvyDw/0OUuy5ll7joUKjyQECDQINaap56zs0zVr74vwfP3536mPc++QLnQtN6CWBWqbDVWg0OUCgQaBBoBmw4qMcXVy0//nR14PbFxYXpz72hfOTX/x/7KU3Ohek2OcRSo9+qNBocoBAg0CDQDNgI7fgxmKjDqG1HO/883xw3xc3HU86Nio0CDQCDQINJWSd+u7iov0Ufzz78sS2295/u/G+19u/L0pPiavQaHKAQINAg0AzYEY5yMooBwg0CDQCDXUrvh465Z+ngwqNQINAg0CDQENj/wGuo2V712WLugAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADBUlEQVR42u1ZTWsTURQ9rRY1FbGlpKXG1iBqVVwpbloQN6LSla4FQRFEEP+B+A+kIEJRFFzrSqy6EaHdiLhRSxS09tM4hCrSRKV+LYYrzG1e3+dMLL1nlZnJu3Mz59xz77w0LYy//wMPrM+3o5H4Hs17rW/GKsdaVyZ9n3xouOYvClBdWPP4WeL415GDVoG37d2z7PUPr8e9vq+Daf6igFCBOINdHflUv2+rCOkCCjTRHODqon2HB4wYDI1yJQIAlJ6MShcI4gG+fZ0YWWkToXjAz8oXp3cBXd/OGq5dQRRgqwBX5qffPk9OZou55OTWUkscb915IBMlSBdIKzBnfMmszhjXrXdVhCgglAfoal/HeGjoFGHqBeIBadd6f/9xAMDY2AOruLp1dF9fbxAFhA5IzBFsmefrQsUTBbh2gY5iLwBgY67VqvaLO/YDACY+zcUnvn60Ssx2PfeChVoVAFCZmBQFNPQBFDu7Uezsbth68QBXD6DaJ5AHaCe+ETaBHfPcN7CMR15AHkBQeYHMAcYTX3nWyc3/MWirhBG3HR7Ks23TZvGAVCdBqrUlnmDI9PTFq8l4Q5ec4ijzkC7gqQByTeoGVFOzLx79lz+kFk0BALYUdhu5vyjA9F1ANxe8Gb2XOJ/L92TCNGHXwAmrvi8KcO0C3BMI69r6AAA/PpcSDIVWAmee7qvKU7pAWnMAPWG+S8wZqUWlZeNwhXCGOVSMuzIvCvCdBFWYnHmZOO5qbTGqaRXK1cX4QzWO21vYJ/sBDZkDCFT7/J8XzjyhPe+3mzMfzdU9z5WgyksUEEoBpsz7Mm6rCF8lSBfwdXtXxk/dvwYAuDN4wWodvx/l4dodRAGute+L4Vuv4g+DYX8Q5Wmat3QB2znAt/bfPbxZ9/z2o2eCdAdbLxAFmCrAl/mnw5cBAIWe+vsEM1Pxu8Ghc1cyVYJ0gaxuRMySB9z4fRoAcLb5dhDm5W0wLQ/wrX2ObyfPAwA23L1e9zj0O4POC0QBWSsgK4gCQncB1c7MSseqV8Bf6g9gJwqH1HAAAAAASUVORK5CYII=">
+<title>专属弹唱小谱本 🍒</title>
+<style>
+:root {
+  --bg: #FBF6F0;
+  --bg-elev: #FFFDFB;
+  --bg-pill: #F4EAE0;
+  --text: #2C221E;
+  --text-sub: #7A6860;
+  --text-muted: #B09E95;
+  --accent: #E85D75;
+  --accent-soft: rgba(232, 93, 117, 0.14);
+  --accent-glow: rgba(232, 93, 117, 0.28);
+  --green: #3B9B6E;
+  --green-soft: rgba(59, 155, 110, 0.14);
+  --border: #EADFD4;
+  --card-shadow: 0 4px 14px rgba(90, 60, 45, 0.06);
+  --active-line-bg: #FFF5F7;
+  --active-line-border: #F5B5C2;
+  --font-scale: 1;
+}
+[data-theme="dark"] {
+  --bg: #141416;
+  --bg-elev: #1E1E22;
+  --bg-pill: #2A2A30;
+  --text: #F3EFEA;
+  --text-sub: #A09A96;
+  --text-muted: #66615E;
+  --accent: #FF7A90;
+  --accent-soft: rgba(255, 122, 144, 0.18);
+  --accent-glow: rgba(255, 122, 144, 0.35);
+  --green: #52C48A;
+  --green-soft: rgba(82, 196, 138, 0.18);
+  --border: #2C2C32;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --active-line-bg: #261B20;
+  --active-line-border: #FF7A90;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  max-width: 430px; margin-left: auto; margin-right: auto;
+  min-height: 100vh; position: relative;
+  padding-bottom: 92px;
+  transition: background 0.25s, color 0.25s;
+}
+.pixel-svg { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+/* Header */
+.top-header {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand-row { display: flex; align-items: center; gap: 10px; }
+.avatar-box {
+  width: 44px; height: 44px; border-radius: 12px; overflow: hidden;
+  border: 2px solid var(--accent); flex-shrink: 0;
+  box-shadow: 0 2px 8px var(--accent-soft);
+}
+.brand-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.brand-sub { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+.header-actions { display: flex; align-items: center; gap: 6px; }
+.icon-btn {
+  background: var(--bg-pill); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 6px 10px; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+
+/* Views */
+.view { display: none; padding: 12px 14px; }
+.view.active { display: block; }
+.search-row { display: flex; gap: 6px; margin-bottom: 10px; }
+.search-input {
+  flex: 1; background: var(--bg-elev); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 9px 11px; font-size: 13.5px; outline: none;
+}
+.search-input:focus { border-color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: #fff; border: none;
+  border-radius: 12px; padding: 9px 12px; font-size: 13px; font-weight: 700;
+  cursor: pointer; white-space: nowrap;
+}
+.btn-secondary {
+  background: var(--bg-pill); color: var(--text); border: 1px solid var(--border);
+  border-radius: 12px; padding: 9px 11px; font-size: 12.5px; font-weight: 700;
+  cursor: pointer; white-space: nowrap;
+}
+.filter-pills { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 8px; }
+.pill {
+  background: var(--bg-pill); color: var(--text-sub);
+  border: 1px solid transparent; border-radius: 999px;
+  padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.pill.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
+.sec-label {
+  font-size: 12px; font-weight: 800; color: var(--text-sub);
+  margin: 10px 2px 8px; display: flex; align-items: center; justify-content: space-between;
+}
+
+.song-card {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 16px; padding: 12px 14px; margin-bottom: 10px;
+  box-shadow: var(--card-shadow); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.song-card-left { flex: 1; min-width: 0; }
+.song-title { font-size: 16.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.song-artist { font-size: 12.5px; color: var(--text-sub); font-weight: 500; }
+.song-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.badge {
+  font-size: 11px; padding: 2px 7px; border-radius: 6px;
+  background: var(--bg-pill); color: var(--text-sub); font-weight: 600;
+}
+.badge.pink { background: var(--accent-soft); color: var(--accent); }
+.badge.green { background: var(--green-soft); color: var(--green); }
+.song-preview { font-size: 12px; color: var(--text-muted); margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.add-lib-btn {
+  background: var(--accent); color: #fff; border: none;
+  border-radius: 10px; padding: 7px 11px; font-size: 12px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+}
+.add-lib-btn.added {
+  background: var(--green-soft); color: var(--green); border: 1px solid var(--green);
+}
+
+/* Toast */
+.toast {
+  position: fixed; top: 68px; left: 50%; transform: translateX(-50%);
+  background: #2C221E; color: #fff; padding: 8px 16px; border-radius: 999px;
+  font-size: 13px; font-weight: 700; z-index: 100; display: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25); white-space: nowrap;
+}
+
+/* Song Detail View */
+.song-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.back-btn {
+  background: var(--bg-pill); color: var(--text); border: none;
+  border-radius: 10px; padding: 6px 11px; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.song-head-center { text-align: center; }
+.song-head-title { font-size: 18px; font-weight: 800; }
+.song-head-artist { font-size: 12px; color: var(--text-sub); }
+
+/* Yoopu-style Control Row */
+.control-strip {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 14px; padding: 9px 8px; margin-bottom: 8px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; text-align: center;
+}
+.ctrl-item { cursor: pointer; padding: 2px; border-radius: 8px; }
+.ctrl-val { font-size: 14.5px; font-weight: 800; color: var(--text); }
+.ctrl-val span { color: var(--accent); font-size: 12px; }
+.ctrl-lbl { font-size: 10.5px; color: var(--text-sub); margin-top: 2px; }
+
+/* Beat Indicator Bar */
+.beat-bar {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 14px; padding: 7px 12px; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.bear-mascot { width: 28px; height: 28px; transition: transform 0.15s; flex-shrink: 0; }
+.bear-mascot.nod { transform: translateY(-3px) scale(1.08); }
+.beat-dots { display: flex; align-items: center; gap: 10px; }
+.beat-dot {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--bg-pill); border: 1.5px solid var(--border);
+  transition: all 0.1s;
+}
+.beat-dot.on { background: var(--accent); border-color: var(--accent); transform: scale(1.25); box-shadow: 0 0 8px var(--accent); }
+.beat-status { font-size: 12px; font-weight: 700; color: var(--accent); min-width: 78px; text-align: right; }
+
+/* Chord Chips Bar */
+.chord-strip {
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 8px;
+}
+.chord-chip {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 9px; padding: 4px 10px; font-size: 13px; font-weight: 700;
+  color: var(--accent); cursor: pointer; white-space: nowrap;
+}
+
+/* Sheet Lines (Optimized for 375px iPhone without line wrap) */
+.sheet-container { display: flex; flex-direction: column; gap: 6px; }
+.section-header {
+  font-size: 12px; font-weight: 700; color: var(--text-sub);
+  background: var(--bg-pill); padding: 4px 10px; border-radius: 8px;
+  margin-top: 6px; display: inline-block; align-self: flex-start;
+}
+.lyric-line {
+  position: relative; overflow: hidden;
+  background: var(--bg-elev); border: 1.5px solid transparent;
+  border-radius: 12px; padding: 8px 10px 7px;
+  cursor: pointer; transition: all 0.2s;
+}
+.lyric-line.active {
+  background: var(--active-line-bg);
+  border-color: var(--active-line-border);
+  box-shadow: 0 3px 12px var(--accent-soft);
+}
+.line-progress {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
+  background: var(--accent-soft); pointer-events: none;
+  transition: width 0.08s linear;
+}
+.segments-row {
+  position: relative; z-index: 2;
+  display: flex; flex-wrap: nowrap; align-items: flex-end;
+  justify-content: flex-start;
+}
+.seg {
+  display: inline-flex; flex-direction: column; align-items: flex-start;
+  margin-right: 0.5px;
+}
+.ch {
+  font-size: calc(13.5px * var(--font-scale));
+  font-weight: 800; color: var(--accent);
+  line-height: 1.15; min-height: 16px;
+  padding: 0 2px; border-radius: 4px;
+  transition: transform 0.12s, background 0.12s;
+}
+.ch.pulse {
+  background: var(--accent); color: #fff;
+  transform: translateY(-2px) scale(1.08);
+}
+.tx {
+  font-size: calc(18px * var(--font-scale));
+  font-weight: 600; line-height: 1.35;
+  letter-spacing: 0.1px; white-space: nowrap;
+}
+.tx u {
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1px;
+}
+
+/* Bottom Section Jump & Floating Follow Bar */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 430px; z-index: 40;
+  background: var(--bg-elev); border-top: 1px solid var(--border);
+  padding: 6px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+}
+.sec-tabs {
+  display: flex; gap: 4px; overflow-x: auto; margin-bottom: 7px;
+}
+.sec-tab {
+  flex: 1; text-align: center; background: var(--bg-pill);
+  color: var(--text-sub); font-size: 11px; font-weight: 700;
+  padding: 4px 6px; border-radius: 6px; cursor: pointer; white-space: nowrap;
+}
+.sec-tab.active { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+.play-controls {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.play-btn {
+  flex: 1; background: var(--accent); color: #fff; border: none;
+  border-radius: 999px; padding: 10px 14px; font-size: 14px; font-weight: 800;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: 0 3px 10px var(--accent-glow);
+}
+.sub-btn {
+  background: var(--bg-pill); color: var(--text); border: 1px solid var(--border);
+  border-radius: 10px; padding: 8px 10px; font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.sub-btn.on { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
+/* Modals */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 60; display: none; align-items: flex-end; justify-content: center;
+}
+.modal-mask.open { display: flex; }
+.modal-sheet {
+  width: 100%; max-width: 430px; background: var(--bg-elev);
+  border-radius: 20px 20px 0 0; padding: 16px;
+  max-height: 86vh; overflow-y: auto;
+}
+.modal-title { font-size: 16px; font-weight: 800; margin-bottom: 12px; display: flex; justify-content: space-between; }
+.form-row { margin-bottom: 10px; }
+.form-lbl { font-size: 12px; font-weight: 700; color: var(--text-sub); margin-bottom: 4px; display: block; }
+.form-inp, .form-area {
+  width: 100%; background: var(--bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; font-size: 13px;
+}
+.form-area { min-height: 115px; font-family: monospace; line-height: 1.45; }
+.chord-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.chord-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px; text-align: center; cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toastBox">✅ 已加入我的曲库</div>
+
+<header class="top-header">
+  <div class="brand-row">
+    <div class="avatar-box" title="专属像素头像"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges" class="pixel-svg"><rect x="0" y="0" width="8" height="1" fill="#f4d6de"/><rect x="8" y="0" width="16" height="1" fill="#fcecf0"/><rect x="24" y="0" width="8" height="1" fill="#f4d6de"/><rect x="0" y="1" width="1" height="1" fill="#f4d6de"/><rect x="1" y="1" width="6" height="1" fill="#fcecf0"/><rect x="7" y="1" width="1" height="1" fill="#f4d6de"/><rect x="8" y="1" width="16" height="1" fill="#fcecf0"/><rect x="24" y="1" width="1" height="1" fill="#f4d6de"/><rect x="25" y="1" width="6" height="1" fill="#fcecf0"/><rect x="31" y="1" width="1" height="1" fill="#f4d6de"/><rect x="0" y="2" width="1" height="1" fill="#f4d6de"/><rect x="1" y="2" width="2" height="1" fill="#fcecf0"/><rect x="3" y="2" width="2" height="1" fill="#ffa6ba"/><rect x="5" y="2" width="2" height="1" fill="#fcecf0"/><rect x="7" y="2" width="1" height="1" fill="#f4d6de"/><rect x="8" y="2" width="3" height="1" fill="#fcecf0"/><rect x="11" y="2" width="4" height="1" fill="#1c171a"/><rect x="15" y="2" width="2" height="1" fill="#fcecf0"/><rect x="17" y="2" width="4" height="1" fill="#1c171a"/><rect x="21" y="2" width="3" height="1" fill="#fcecf0"/><rect x="24" y="2" width="1" height="1" fill="#f4d6de"/><rect x="25" y="2" width="2" height="1" fill="#fcecf0"/><rect x="27" y="2" width="2" height="1" fill="#ffa6ba"/><rect x="29" y="2" width="2" height="1" fill="#fcecf0"/><rect x="31" y="2" width="1" height="1" fill="#f4d6de"/><rect x="0" y="3" width="1" height="1" fill="#f4d6de"/><rect x="1" y="3" width="2" height="1" fill="#fcecf0"/><rect x="3" y="3" width="2" height="1" fill="#ffa6ba"/><rect x="5" y="3" width="2" height="1" fill="#fcecf0"/><rect x="7" y="3" width="1" height="1" fill="#f4d6de"/><rect x="8" y="3" width="1" height="1" fill="#fcecf0"/><rect x="9" y="3" width="2" height="1" fill="#1c171a"/><rect x="11" y="3" width="4" height="1" fill="#342b30"/><rect x="15" y="3" width="2" height="1" fill="#1c171a"/><rect x="17" y="3" width="4" height="1" fill="#342b30"/><rect x="21" y="3" width="2" height="1" fill="#1c171a"/><rect x="23" y="3" width="1" height="1" fill="#fcecf0"/><rect x="24" y="3" width="1" height="1" fill="#f4d6de"/><rect x="25" y="3" width="2" height="1" fill="#fcecf0"/><rect x="27" y="3" width="2" height="1" fill="#ffa6ba"/><rect x="29" y="3" width="2" height="1" fill="#fcecf0"/><rect x="31" y="3" width="1" height="1" fill="#f4d6de"/><rect x="0" y="4" width="1" height="1" fill="#f4d6de"/><rect x="1" y="4" width="6" height="1" fill="#fcecf0"/><rect x="7" y="4" width="1" height="1" fill="#f4d6de"/><rect x="8" y="4" width="1" height="1" fill="#1c171a"/><rect x="9" y="4" width="14" height="1" fill="#342b30"/><rect x="23" y="4" width="1" height="1" fill="#1c171a"/><rect x="24" y="4" width="1" height="1" fill="#f4d6de"/><rect x="25" y="4" width="6" height="1" fill="#fcecf0"/><rect x="31" y="4" width="1" height="1" fill="#f4d6de"/><rect x="0" y="5" width="8" height="1" fill="#f4d6de"/><rect x="8" y="5" width="16" height="1" fill="#1c171a"/><rect x="24" y="5" width="8" height="1" fill="#f4d6de"/><rect x="0" y="6" width="7" height="1" fill="#fcecf0"/><rect x="7" y="6" width="18" height="1" fill="#1c171a"/><rect x="25" y="6" width="7" height="1" fill="#fcecf0"/><rect x="0" y="7" width="6" height="1" fill="#fcecf0"/><rect x="6" y="7" width="7" height="1" fill="#1c171a"/><rect x="13" y="7" width="2" height="1" fill="#fff1e6"/><rect x="15" y="7" width="2" height="1" fill="#fcecf0"/><rect x="17" y="7" width="2" height="1" fill="#fff1e6"/><rect x="19" y="7" width="7" height="1" fill="#1c171a"/><rect x="26" y="7" width="6" height="1" fill="#fcecf0"/><rect x="0" y="8" width="6" height="1" fill="#fcecf0"/><rect x="6" y="8" width="5" height="1" fill="#1c171a"/><rect x="11" y="8" width="10" height="1" fill="#fff1e6"/><rect x="21" y="8" width="5" height="1" fill="#1c171a"/><rect x="26" y="8" width="6" height="1" fill="#fcecf0"/><rect x="0" y="9" width="5" height="1" fill="#fcecf0"/><rect x="5" y="9" width="4" height="1" fill="#1c171a"/><rect x="9" y="9" width="14" height="1" fill="#fff1e6"/><rect x="23" y="9" width="4" height="1" fill="#1c171a"/><rect x="27" y="9" width="5" height="1" fill="#fcecf0"/><rect x="0" y="10" width="5" height="1" fill="#fcecf0"/><rect x="5" y="10" width="3" height="1" fill="#1c171a"/><rect x="8" y="10" width="4" height="1" fill="#fff1e6"/><rect x="12" y="10" width="1" height="1" fill="#3a2c30"/><rect x="13" y="10" width="6" height="1" fill="#fff1e6"/><rect x="19" y="10" width="1" height="1" fill="#3a2c30"/><rect x="20" y="10" width="4" height="1" fill="#fff1e6"/><rect x="24" y="10" width="3" height="1" fill="#1c171a"/><rect x="27" y="10" width="5" height="1" fill="#fcecf0"/><rect x="0" y="11" width="5" height="1" fill="#fcecf0"/><rect x="5" y="11" width="3" height="1" fill="#1c171a"/><rect x="8" y="11" width="2" height="1" fill="#fff1e6"/><rect x="10" y="11" width="2" height="1" fill="#3a2c30"/><rect x="12" y="11" width="8" height="1" fill="#fff1e6"/><rect x="20" y="11" width="2" height="1" fill="#3a2c30"/><rect x="22" y="11" width="2" height="1" fill="#fff1e6"/><rect x="24" y="11" width="3" height="1" fill="#1c171a"/><rect x="27" y="11" width="5" height="1" fill="#fcecf0"/><rect x="0" y="12" width="4" height="1" fill="#fcecf0"/><rect x="4" y="12" width="1" height="1" fill="#100d0f"/><rect x="5" y="12" width="2" height="1" fill="#1c171a"/><rect x="7" y="12" width="4" height="1" fill="#fff1e6"/><rect x="11" y="12" width="1" height="1" fill="#201619"/><rect x="12" y="12" width="1" height="1" fill="#ffffff"/><rect x="13" y="12" width="6" height="1" fill="#fff1e6"/><rect x="19" y="12" width="1" height="1" fill="#201619"/><rect x="20" y="12" width="1" height="1" fill="#ffffff"/><rect x="21" y="12" width="4" height="1" fill="#fff1e6"/><rect x="25" y="12" width="2" height="1" fill="#1c171a"/><rect x="27" y="12" width="1" height="1" fill="#100d0f"/><rect x="28" y="12" width="4" height="1" fill="#fcecf0"/><rect x="0" y="13" width="4" height="1" fill="#fcecf0"/><rect x="4" y="13" width="1" height="1" fill="#100d0f"/><rect x="5" y="13" width="2" height="1" fill="#1c171a"/><rect x="7" y="13" width="4" height="1" fill="#fff1e6"/><rect x="11" y="13" width="2" height="1" fill="#201619"/><rect x="13" y="13" width="6" height="1" fill="#fff1e6"/><rect x="19" y="13" width="2" height="1" fill="#201619"/><rect x="21" y="13" width="4" height="1" fill="#fff1e6"/><rect x="25" y="13" width="2" height="1" fill="#1c171a"/><rect x="27" y="13" width="1" height="1" fill="#100d0f"/><rect x="28" y="13" width="4" height="1" fill="#fcecf0"/><rect x="0" y="14" width="3" height="1" fill="#fcecf0"/><rect x="3" y="14" width="2" height="1" fill="#100d0f"/><rect x="5" y="14" width="1" height="1" fill="#1c171a"/><rect x="6" y="14" width="4" height="1" fill="#fff1e6"/><rect x="10" y="14" width="2" height="1" fill="#ffa8bc"/><rect x="12" y="14" width="8" height="1" fill="#fff1e6"/><rect x="20" y="14" width="2" height="1" fill="#ffa8bc"/><rect x="22" y="14" width="4" height="1" fill="#fff1e6"/><rect x="26" y="14" width="1" height="1" fill="#1c171a"/><rect x="27" y="14" width="2" height="1" fill="#100d0f"/><rect x="29" y="14" width="3" height="1" fill="#fcecf0"/><rect x="0" y="15" width="3" height="1" fill="#fcecf0"/><rect x="3" y="15" width="2" height="1" fill="#100d0f"/><rect x="5" y="15" width="1" height="1" fill="#ffffff"/><rect x="6" y="15" width="4" height="1" fill="#fff1e6"/><rect x="10" y="15" width="3" height="1" fill="#ffa8bc"/><rect x="13" y="15" width="6" height="1" fill="#fff1e6"/><rect x="19" y="15" width="3" height="1" fill="#ffa8bc"/><rect x="22" y="15" width="4" height="1" fill="#fff1e6"/><rect x="26" y="15" width="1" height="1" fill="#ffffff"/><rect x="27" y="15" width="2" height="1" fill="#100d0f"/><rect x="29" y="15" width="3" height="1" fill="#fcecf0"/><rect x="0" y="16" width="3" height="1" fill="#fcecf0"/><rect x="3" y="16" width="2" height="1" fill="#100d0f"/><rect x="5" y="16" width="1" height="1" fill="#ffffff"/><rect x="6" y="16" width="1" height="1" fill="#fff1e6"/><rect x="7" y="16" width="1" height="1" fill="#1c171a"/><rect x="8" y="16" width="7" height="1" fill="#fff1e6"/><rect x="15" y="16" width="2" height="1" fill="#e25f76"/><rect x="17" y="16" width="7" height="1" fill="#fff1e6"/><rect x="24" y="16" width="1" height="1" fill="#1c171a"/><rect x="25" y="16" width="1" height="1" fill="#fff1e6"/><rect x="26" y="16" width="1" height="1" fill="#ffffff"/><rect x="27" y="16" width="2" height="1" fill="#100d0f"/><rect x="29" y="16" width="3" height="1" fill="#fcecf0"/><rect x="0" y="17" width="4" height="1" fill="#fcecf0"/><rect x="4" y="17" width="2" height="1" fill="#100d0f"/><rect x="6" y="17" width="1" height="1" fill="#f5dbc8"/><rect x="7" y="17" width="1" height="1" fill="#1c171a"/><rect x="8" y="17" width="7" height="1" fill="#fff1e6"/><rect x="15" y="17" width="2" height="1" fill="#e25f76"/><rect x="17" y="17" width="7" height="1" fill="#fff1e6"/><rect x="24" y="17" width="1" height="1" fill="#1c171a"/><rect x="25" y="17" width="1" height="1" fill="#f5dbc8"/><rect x="26" y="17" width="2" height="1" fill="#100d0f"/><rect x="28" y="17" width="4" height="1" fill="#fcecf0"/><rect x="0" y="18" width="5" height="1" fill="#fcecf0"/><rect x="5" y="18" width="2" height="1" fill="#100d0f"/><rect x="7" y="18" width="1" height="1" fill="#1c171a"/><rect x="8" y="18" width="2" height="1" fill="#f5dbc8"/><rect x="10" y="18" width="12" height="1" fill="#fff1e6"/><rect x="22" y="18" width="2" height="1" fill="#f5dbc8"/><rect x="24" y="18" width="1" height="1" fill="#1c171a"/><rect x="25" y="18" width="2" height="1" fill="#100d0f"/><rect x="27" y="18" width="5" height="1" fill="#fcecf0"/><rect x="0" y="19" width="6" height="1" fill="#fcecf0"/><rect x="6" y="19" width="1" height="1" fill="#100d0f"/><rect x="7" y="19" width="1" height="1" fill="#1c171a"/><rect x="8" y="19" width="1" height="1" fill="#fcecf0"/><rect x="9" y="19" width="2" height="1" fill="#f5dbc8"/><rect x="11" y="19" width="10" height="1" fill="#fff1e6"/><rect x="21" y="19" width="2" height="1" fill="#f5dbc8"/><rect x="23" y="19" width="1" height="1" fill="#fcecf0"/><rect x="24" y="19" width="1" height="1" fill="#1c171a"/><rect x="25" y="19" width="1" height="1" fill="#100d0f"/><rect x="26" y="19" width="6" height="1" fill="#fcecf0"/><rect x="0" y="20" width="7" height="1" fill="#fcecf0"/><rect x="7" y="20" width="1" height="1" fill="#1c171a"/><rect x="8" y="20" width="3" height="1" fill="#fcecf0"/><rect x="11" y="20" width="4" height="1" fill="#f5dbc8"/><rect x="15" y="20" width="2" height="1" fill="#fff1e6"/><rect x="17" y="20" width="4" height="1" fill="#f5dbc8"/><rect x="21" y="20" width="3" height="1" fill="#fcecf0"/><rect x="24" y="20" width="1" height="1" fill="#1c171a"/><rect x="25" y="20" width="7" height="1" fill="#fcecf0"/><rect x="0" y="21" width="7" height="1" fill="#fcecf0"/><rect x="7" y="21" width="1" height="1" fill="#1c171a"/><rect x="8" y="21" width="2" height="1" fill="#fcecf0"/><rect x="10" y="21" width="2" height="1" fill="#ddd0c3"/><rect x="12" y="21" width="8" height="1" fill="#f5dbc8"/><rect x="20" y="21" width="2" height="1" fill="#ddd0c3"/><rect x="22" y="21" width="2" height="1" fill="#fcecf0"/><rect x="24" y="21" width="1" height="1" fill="#1c171a"/><rect x="25" y="21" width="7" height="1" fill="#fcecf0"/><rect x="0" y="22" width="6" height="1" fill="#fcecf0"/><rect x="6" y="22" width="1" height="1" fill="#1c171a"/><rect x="7" y="22" width="2" height="1" fill="#fcecf0"/><rect x="9" y="22" width="3" height="1" fill="#ddd0c3"/><rect x="12" y="22" width="8" height="1" fill="#efe6dd"/><rect x="20" y="22" width="3" height="1" fill="#ddd0c3"/><rect x="23" y="22" width="2" height="1" fill="#fcecf0"/><rect x="25" y="22" width="1" height="1" fill="#1c171a"/><rect x="26" y="22" width="6" height="1" fill="#fcecf0"/><rect x="0" y="23" width="5" height="1" fill="#fcecf0"/><rect x="5" y="23" width="1" height="1" fill="#1c171a"/><rect x="6" y="23" width="2" height="1" fill="#fcecf0"/><rect x="8" y="23" width="2" height="1" fill="#ddd0c3"/><rect x="10" y="23" width="12" height="1" fill="#efe6dd"/><rect x="22" y="23" width="2" height="1" fill="#ddd0c3"/><rect x="24" y="23" width="2" height="1" fill="#fcecf0"/><rect x="26" y="23" width="1" height="1" fill="#1c171a"/><rect x="27" y="23" width="5" height="1" fill="#fcecf0"/><rect x="0" y="24" width="5" height="1" fill="#fcecf0"/><rect x="5" y="24" width="1" height="1" fill="#1c171a"/><rect x="6" y="24" width="1" height="1" fill="#fcecf0"/><rect x="7" y="24" width="1" height="1" fill="#ddd0c3"/><rect x="8" y="24" width="7" height="1" fill="#efe6dd"/><rect x="15" y="24" width="1" height="1" fill="#4c9a72"/><rect x="16" y="24" width="8" height="1" fill="#efe6dd"/><rect x="24" y="24" width="1" height="1" fill="#ddd0c3"/><rect x="25" y="24" width="1" height="1" fill="#fcecf0"/><rect x="26" y="24" width="1" height="1" fill="#1c171a"/><rect x="27" y="24" width="5" height="1" fill="#fcecf0"/><rect x="0" y="25" width="4" height="1" fill="#fcecf0"/><rect x="4" y="25" width="1" height="1" fill="#1c171a"/><rect x="5" y="25" width="2" height="1" fill="#fcecf0"/><rect x="7" y="25" width="1" height="1" fill="#ddd0c3"/><rect x="8" y="25" width="7" height="1" fill="#efe6dd"/><rect x="15" y="25" width="1" height="1" fill="#e63946"/><rect x="16" y="25" width="8" height="1" fill="#efe6dd"/><rect x="24" y="25" width="1" height="1" fill="#ddd0c3"/><rect x="25" y="25" width="2" height="1" fill="#fcecf0"/><rect x="27" y="25" width="1" height="1" fill="#1c171a"/><rect x="28" y="25" width="4" height="1" fill="#fcecf0"/><rect x="0" y="26" width="6" height="1" fill="#fcecf0"/><rect x="6" y="26" width="1" height="1" fill="#ddd0c3"/><rect x="7" y="26" width="7" height="1" fill="#efe6dd"/><rect x="14" y="26" width="3" height="1" fill="#cc9e7a"/><rect x="17" y="26" width="8" height="1" fill="#efe6dd"/><rect x="25" y="26" width="1" height="1" fill="#ddd0c3"/><rect x="26" y="26" width="6" height="1" fill="#fcecf0"/><rect x="0" y="27" width="5" height="1" fill="#fcecf0"/><rect x="5" y="27" width="1" height="1" fill="#ddd0c3"/><rect x="6" y="27" width="7" height="1" fill="#efe6dd"/><rect x="13" y="27" width="1" height="1" fill="#b0805c"/><rect x="14" y="27" width="3" height="1" fill="#cc9e7a"/><rect x="17" y="27" width="1" height="1" fill="#b0805c"/><rect x="18" y="27" width="8" height="1" fill="#efe6dd"/><rect x="26" y="27" width="1" height="1" fill="#ddd0c3"/><rect x="27" y="27" width="5" height="1" fill="#fcecf0"/><rect x="0" y="28" width="5" height="1" fill="#fcecf0"/><rect x="5" y="28" width="1" height="1" fill="#ddd0c3"/><rect x="6" y="28" width="8" height="1" fill="#efe6dd"/><rect x="14" y="28" width="1" height="1" fill="#cc9e7a"/><rect x="15" y="28" width="1" height="1" fill="#689cda"/><rect x="16" y="28" width="1" height="1" fill="#cc9e7a"/><rect x="17" y="28" width="9" height="1" fill="#efe6dd"/><rect x="26" y="28" width="1" height="1" fill="#ddd0c3"/><rect x="27" y="28" width="5" height="1" fill="#fcecf0"/><rect x="0" y="29" width="4" height="1" fill="#fcecf0"/><rect x="4" y="29" width="1" height="1" fill="#ddd0c3"/><rect x="5" y="29" width="9" height="1" fill="#efe6dd"/><rect x="14" y="29" width="1" height="1" fill="#e63946"/><rect x="15" y="29" width="1" height="1" fill="#efe6dd"/><rect x="16" y="29" width="1" height="1" fill="#e63946"/><rect x="17" y="29" width="10" height="1" fill="#efe6dd"/><rect x="27" y="29" width="1" height="1" fill="#ddd0c3"/><rect x="28" y="29" width="4" height="1" fill="#fcecf0"/><rect x="0" y="30" width="4" height="1" fill="#fcecf0"/><rect x="4" y="30" width="1" height="1" fill="#ddd0c3"/><rect x="5" y="30" width="22" height="1" fill="#efe6dd"/><rect x="27" y="30" width="1" height="1" fill="#ddd0c3"/><rect x="28" y="30" width="4" height="1" fill="#fcecf0"/><rect x="0" y="31" width="4" height="1" fill="#fcecf0"/><rect x="4" y="31" width="24" height="1" fill="#ddd0c3"/><rect x="28" y="31" width="4" height="1" fill="#fcecf0"/></svg></div>
+    <div>
+      <div class="brand-title">专属弹唱小谱本 🍒</div>
+      <div class="brand-sub">每一首歌都陪你慢慢弹 · 点和弦可听音</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="fontBtn" onclick="cycleFont()">大字</button>
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()">🌙 夜间</button>
+  </div>
+</header>
+
+<!-- VIEW 1: SONG LIBRARY & ONE-CLICK SEARCH-TO-ADD -->
+<main id="libraryView" class="view active">
+  <div class="search-row">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入歌名(如：程艾影、成都、虚拟)搜谱..." oninput="renderLibrary()">
+    <button class="btn-primary" onclick="triggerSearchFocus()">搜索曲库</button>
+    <button class="btn-secondary" onclick="openAddModal()">＋贴谱</button>
+  </div>
+  <div class="filter-pills" id="filterPills">
+    <span class="pill active" onclick="setFilter('all')">全部</span>
+    <span class="pill" onclick="setFilter('赵雷')">赵雷</span>
+    <span class="pill" onclick="setFilter('陈粒')">陈粒</span>
+    <span class="pill" onclick="openChordModal()">🎸 和弦指法试听</span>
+  </div>
+
+  <!-- Search Results from Cloud/Built-in Catalog to Add to Library -->
+  <div id="catalogResultsSection" style="display:none;">
+    <div class="sec-label">
+      <span>✨ 搜到的可添加曲谱（点右侧按钮直接加入曲库）</span>
+      <span style="color:var(--accent);cursor:pointer;" onclick="clearSearch()">清空搜索</span>
+    </div>
+    <div id="catalogList"></div>
+  </div>
+
+  <div class="sec-label">
+    <span id="myLibHeader">🍒 我的手机曲库</span>
+    <span style="font-weight:600;font-size:11px;" id="myLibCount"></span>
+  </div>
+  <div id="songList"></div>
+</main>
+
+<!-- VIEW 2: SONG SHEET & FOLLOW ALONG -->
+<main id="sheetView" class="view">
+  <div class="song-nav">
+    <button class="back-btn" onclick="backToLibrary()">‹ 曲库</button>
+    <div class="song-head-center">
+      <div class="song-head-title" id="stTitle">程艾影</div>
+      <div class="song-head-artist" id="stArtist">赵雷 · 4/4拍</div>
+    </div>
+    <button class="back-btn" onclick="openChordModal()">🎸 指法</button>
+  </div>
+
+  <div class="control-strip">
+    <div class="ctrl-item" onclick="transposeKey()">
+      <div class="ctrl-val" id="ctrlKey">G调 <span>›</span></div>
+      <div class="ctrl-lbl" id="ctrlCapo">不夹 (点此变调)</div>
+    </div>
+    <div class="ctrl-item" onclick="changeBpm(-5)">
+      <div class="ctrl-val" id="ctrlBpm">70 <span>BPM</span></div>
+      <div class="ctrl-lbl">拍速 (-5)</div>
+    </div>
+    <div class="ctrl-item" onclick="changeBpm(5)">
+      <div class="ctrl-val" id="ctrlPlayable">100% <span>›</span></div>
+      <div class="ctrl-lbl">可弹 (拍速+5)</div>
+    </div>
+    <div class="ctrl-item" onclick="strumCurrentFirstChord()">
+      <div class="ctrl-val">🔊 <span>定音</span></div>
+      <div class="ctrl-lbl">起唱和弦音</div>
+    </div>
+  </div>
+
+  <div class="beat-bar">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="bear-mascot" id="bearMascot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" shape-rendering="crispEdges" class="pixel-svg"><rect x="11" y="0" width="2" height="1" fill="#40916c"/><rect x="10" y="1" width="1" height="1" fill="#40916c"/><rect x="9" y="2" width="1" height="1" fill="#40916c"/><rect x="10" y="2" width="1" height="1" fill="#e63946"/><rect x="11" y="2" width="1" height="1" fill="#ff9baa"/><rect x="12" y="2" width="1" height="1" fill="#e63946"/><rect x="9" y="3" width="4" height="1" fill="#e63946"/><rect x="4" y="4" width="3" height="1" fill="#b2815a"/><rect x="9" y="4" width="1" height="1" fill="#b2815a"/><rect x="10" y="4" width="2" height="1" fill="#e63946"/><rect x="12" y="4" width="1" height="1" fill="#b2815a"/><rect x="15" y="4" width="3" height="1" fill="#b2815a"/><rect x="3" y="5" width="1" height="1" fill="#b2815a"/><rect x="4" y="5" width="1" height="1" fill="#d0a17a"/><rect x="5" y="5" width="1" height="1" fill="#eeceb4"/><rect x="6" y="5" width="1" height="1" fill="#d0a17a"/><rect x="7" y="5" width="8" height="1" fill="#b2815a"/><rect x="15" y="5" width="1" height="1" fill="#d0a17a"/><rect x="16" y="5" width="1" height="1" fill="#eeceb4"/><rect x="17" y="5" width="1" height="1" fill="#d0a17a"/><rect x="18" y="5" width="1" height="1" fill="#b2815a"/><rect x="3" y="6" width="1" height="1" fill="#b2815a"/><rect x="4" y="6" width="1" height="1" fill="#d0a17a"/><rect x="5" y="6" width="2" height="1" fill="#eeceb4"/><rect x="7" y="6" width="8" height="1" fill="#d0a17a"/><rect x="15" y="6" width="2" height="1" fill="#eeceb4"/><rect x="17" y="6" width="1" height="1" fill="#d0a17a"/><rect x="18" y="6" width="1" height="1" fill="#b2815a"/><rect x="3" y="7" width="1" height="1" fill="#b2815a"/><rect x="4" y="7" width="14" height="1" fill="#d0a17a"/><rect x="18" y="7" width="1" height="1" fill="#b2815a"/><rect x="4" y="8" width="1" height="1" fill="#b2815a"/><rect x="5" y="8" width="2" height="1" fill="#d0a17a"/><rect x="7" y="8" width="3" height="1" fill="#9e6d48"/><rect x="10" y="8" width="2" height="1" fill="#d0a17a"/><rect x="12" y="8" width="3" height="1" fill="#9e6d48"/><rect x="15" y="8" width="2" height="1" fill="#d0a17a"/><rect x="17" y="8" width="1" height="1" fill="#b2815a"/><rect x="3" y="9" width="1" height="1" fill="#b2815a"/><rect x="4" y="9" width="3" height="1" fill="#d0a17a"/><rect x="7" y="9" width="3" height="1" fill="#9e6d48"/><rect x="10" y="9" width="2" height="1" fill="#d0a17a"/><rect x="12" y="9" width="3" height="1" fill="#9e6d48"/><rect x="15" y="9" width="3" height="1" fill="#d0a17a"/><rect x="18" y="9" width="1" height="1" fill="#b2815a"/><rect x="3" y="10" width="1" height="1" fill="#b2815a"/><rect x="4" y="10" width="2" height="1" fill="#d0a17a"/><rect x="6" y="10" width="4" height="1" fill="#9e6d48"/><rect x="10" y="10" width="2" height="1" fill="#faeee2"/><rect x="12" y="10" width="4" height="1" fill="#9e6d48"/><rect x="16" y="10" width="2" height="1" fill="#d0a17a"/><rect x="18" y="10" width="1" height="1" fill="#b2815a"/><rect x="3" y="11" width="1" height="1" fill="#b2815a"/><rect x="4" y="11" width="2" height="1" fill="#d0a17a"/><rect x="6" y="11" width="1" height="1" fill="#ffa6b8"/><rect x="7" y="11" width="2" height="1" fill="#9e6d48"/><rect x="9" y="11" width="1" height="1" fill="#faeee2"/><rect x="10" y="11" width="2" height="1" fill="#4a3024"/><rect x="12" y="11" width="1" height="1" fill="#faeee2"/><rect x="13" y="11" width="2" height="1" fill="#9e6d48"/><rect x="15" y="11" width="1" height="1" fill="#ffa6b8"/><rect x="16" y="11" width="2" height="1" fill="#d0a17a"/><rect x="18" y="11" width="1" height="1" fill="#b2815a"/><rect x="4" y="12" width="1" height="1" fill="#b2815a"/><rect x="5" y="12" width="4" height="1" fill="#d0a17a"/><rect x="9" y="12" width="4" height="1" fill="#faeee2"/><rect x="13" y="12" width="4" height="1" fill="#d0a17a"/><rect x="17" y="12" width="1" height="1" fill="#b2815a"/><rect x="5" y="13" width="2" height="1" fill="#b2815a"/><rect x="7" y="13" width="8" height="1" fill="#d0a17a"/><rect x="15" y="13" width="2" height="1" fill="#b2815a"/><rect x="4" y="14" width="1" height="1" fill="#b2815a"/><rect x="5" y="14" width="4" height="1" fill="#d0a17a"/><rect x="9" y="14" width="4" height="1" fill="#eeceb4"/><rect x="13" y="14" width="4" height="1" fill="#d0a17a"/><rect x="17" y="14" width="1" height="1" fill="#b2815a"/><rect x="3" y="15" width="1" height="1" fill="#b2815a"/><rect x="4" y="15" width="4" height="1" fill="#d0a17a"/><rect x="8" y="15" width="1" height="1" fill="#eeceb4"/><rect x="9" y="15" width="4" height="1" fill="#6498da"/><rect x="13" y="15" width="1" height="1" fill="#eeceb4"/><rect x="14" y="15" width="4" height="1" fill="#d0a17a"/><rect x="18" y="15" width="1" height="1" fill="#b2815a"/><rect x="3" y="16" width="1" height="1" fill="#b2815a"/><rect x="4" y="16" width="3" height="1" fill="#d0a17a"/><rect x="7" y="16" width="3" height="1" fill="#eeceb4"/><rect x="10" y="16" width="2" height="1" fill="#6498da"/><rect x="12" y="16" width="3" height="1" fill="#eeceb4"/><rect x="15" y="16" width="3" height="1" fill="#d0a17a"/><rect x="18" y="16" width="1" height="1" fill="#b2815a"/><rect x="3" y="17" width="1" height="1" fill="#b2815a"/><rect x="4" y="17" width="2" height="1" fill="#d0a17a"/><rect x="6" y="17" width="2" height="1" fill="#eeceb4"/><rect x="8" y="17" width="2" height="1" fill="#e63946"/><rect x="10" y="17" width="2" height="1" fill="#eeceb4"/><rect x="12" y="17" width="2" height="1" fill="#e63946"/><rect x="14" y="17" width="2" height="1" fill="#eeceb4"/><rect x="16" y="17" width="2" height="1" fill="#d0a17a"/><rect x="18" y="17" width="1" height="1" fill="#b2815a"/><rect x="3" y="18" width="1" height="1" fill="#b2815a"/><rect x="4" y="18" width="2" height="1" fill="#d0a17a"/><rect x="6" y="18" width="2" height="1" fill="#eeceb4"/><rect x="8" y="18" width="2" height="1" fill="#e63946"/><rect x="10" y="18" width="2" height="1" fill="#eeceb4"/><rect x="12" y="18" width="2" height="1" fill="#e63946"/><rect x="14" y="18" width="2" height="1" fill="#eeceb4"/><rect x="16" y="18" width="2" height="1" fill="#d0a17a"/><rect x="18" y="18" width="1" height="1" fill="#b2815a"/><rect x="4" y="19" width="1" height="1" fill="#b2815a"/><rect x="5" y="19" width="4" height="1" fill="#d0a17a"/><rect x="9" y="19" width="4" height="1" fill="#eeceb4"/><rect x="13" y="19" width="4" height="1" fill="#d0a17a"/><rect x="17" y="19" width="1" height="1" fill="#b2815a"/><rect x="3" y="20" width="2" height="1" fill="#b2815a"/><rect x="5" y="20" width="12" height="1" fill="#d0a17a"/><rect x="17" y="20" width="2" height="1" fill="#b2815a"/><rect x="2" y="21" width="1" height="1" fill="#b2815a"/><rect x="3" y="21" width="2" height="1" fill="#9e6d48"/><rect x="5" y="21" width="1" height="1" fill="#b2815a"/><rect x="6" y="21" width="10" height="1" fill="#d0a17a"/><rect x="16" y="21" width="1" height="1" fill="#b2815a"/><rect x="17" y="21" width="2" height="1" fill="#9e6d48"/><rect x="19" y="21" width="1" height="1" fill="#b2815a"/><rect x="2" y="22" width="1" height="1" fill="#b2815a"/><rect x="3" y="22" width="2" height="1" fill="#9e6d48"/><rect x="5" y="22" width="1" height="1" fill="#b2815a"/><rect x="8" y="22" width="6" height="1" fill="#b2815a"/><rect x="16" y="22" width="1" height="1" fill="#b2815a"/><rect x="17" y="22" width="2" height="1" fill="#9e6d48"/><rect x="19" y="22" width="1" height="1" fill="#b2815a"/><rect x="3" y="23" width="2" height="1" fill="#b2815a"/><rect x="17" y="23" width="2" height="1" fill="#b2815a"/></svg></div>
+      <span style="font-size:12px;font-weight:700;" id="barCounter">第 1 小节</span>
+    </div>
+    <div class="beat-dots">
+      <div class="beat-dot" id="bdot0"></div>
+      <div class="beat-dot" id="bdot1"></div>
+      <div class="beat-dot" id="bdot2"></div>
+      <div class="beat-dot" id="bdot3"></div>
+    </div>
+    <div class="beat-status" id="beatStatus">点句子可跳拍</div>
+  </div>
+
+  <div class="chord-strip" id="songChordStrip"></div>
+
+  <div class="sheet-container" id="sheetContainer"></div>
+
+  <div class="bottom-bar">
+    <div class="sec-tabs" id="secTabs"></div>
+    <div class="play-controls">
+      <button class="sub-btn on" id="metroBtn" onclick="toggleMetro()">🔔 节拍音</button>
+      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶ 开始随拍跟唱</button>
+      <button class="sub-btn" id="loopBtn" onclick="toggleLoop()">🔁 循环段</button>
+    </div>
+  </div>
+</main>
+
+<!-- ADD / PASTE SONG MODAL -->
+<div class="modal-mask" id="addModal">
+  <div class="modal-sheet">
+    <div class="modal-title">
+      <span>🍒 粘贴或自定义新歌到曲库</span>
+      <span style="cursor:pointer" onclick="closeModals()">✕</span>
+    </div>
+    <div class="form-row">
+      <label class="form-lbl">歌名 & 歌手</label>
+      <div style="display:flex;gap:8px;">
+        <input id="newTitle" class="form-inp" placeholder="例如：程艾影 / 南方姑娘">
+        <input id="newArtist" class="form-inp" placeholder="例如：赵雷">
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-lbl">选调 / 变调夹 / 拍速 BPM</label>
+      <div style="display:flex;gap:8px;">
+        <input id="newKey" class="form-inp" value="G">
+        <input id="newCapo" class="form-inp" value="不夹">
+        <input id="newBpm" class="form-inp" type="number" value="70">
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-lbl">支持两种格式：① [G]歌词 括号谱 ② 上行和弦、下行歌词的双行谱</label>
+      <textarea id="newSheet" class="form-area" placeholder="#主歌 1&#10;G        D        Em       C&#10;伍岚正和程艾影从上海到武汉&#10;或：&#10;[G]伍岚正[D]和程艾影从[Em]上海到[C]武汉"></textarea>
+    </div>
+    <button class="btn-primary" style="width:100%;padding:12px;" onclick="saveNewSong()">保存进我的曲库</button>
+  </div>
+</div>
+
+<!-- CHORD DIAGRAM & STRUM MODAL -->
+<div class="modal-mask" id="chordModal">
+  <div class="modal-sheet">
+    <div class="modal-title">
+      <span>🎸 常用和弦指法 & 点击听真吉他扫弦</span>
+      <span style="cursor:pointer" onclick="closeModals()">✕</span>
+    </div>
+    <div class="chord-grid" id="chordGrid"></div>
+  </div>
+</div>
+
+<script>
+const NOTES = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+const CHORD_FREQS = {
+  "G": [98.0, 123.47, 146.83, 196.0, 246.94, 392.0],
+  "D": [146.83, 220.0, 293.66, 369.99],
+  "Em": [82.41, 123.47, 164.81, 196.0, 246.94, 329.63],
+  "Em7": [82.41, 123.47, 146.83, 196.0, 246.94, 329.63],
+  "C": [130.81, 164.81, 196.0, 261.63, 329.63],
+  "Am7": [110.0, 164.81, 196.0, 261.63, 329.63],
+  "Am": [110.0, 164.81, 220.0, 261.63, 329.63],
+  "Fmaj7": [130.81, 174.61, 220.0, 261.63, 329.63],
+  "F": [87.31, 130.81, 174.61, 220.0, 261.63, 349.23],
+  "Dm7": [146.83, 220.0, 261.63, 349.23],
+  "Cmaj7": [130.81, 164.81, 196.0, 246.94, 329.63],
+  "Bm": [123.47, 185.0, 246.94, 293.66, 369.99]
+};
+const CHORD_FINGERS = {
+  "G": "6弦3品 · 5弦2品 · 1弦3品",
+  "D": "3弦2品 · 1弦2品 · 2弦3品",
+  "Em": "5弦2品 · 4弦2品（超简单）",
+  "C": "5弦3品 · 4弦2品 · 2弦1品",
+  "Am7": "4弦2品 · 2弦1品",
+  "Fmaj7": "4弦3品 · 3弦2品 · 2弦1品（免横按）",
+  "Dm7": "3弦2品 · 1/2弦1品小横按",
+  "Cmaj7": "5弦3品 · 4弦2品（免按2弦）"
+};
+
+// Built-in searchable Yoopu / Folk Guitar Catalog (can search and 1-click add to library!)
+const BUILTIN_CATALOG = [
+  {
+    id: "cheng-ai-ying-g",
+    title: "程艾影",
+    versionTag: "G调不夹 · 朋友视频同款",
+    artist: "赵雷",
+    baseKey: "G",
+    capo: "不夹 (原唱C调)",
+    bpm: 70,
+    playable: "100%",
+    raw: `#主歌 1
+[G]伍岚正[D]和程艾影从[Em]上海到[C]武汉，
+他们要[G]坐十天[D]马车三天[C]两夜的[G]轮船，
+哦泥路[G]上艾影[D]含着糖靠着[Em]岚正的[C]肩膀，
+马车经[G]过村庄[D]石路颠簸[C]不渝的[G]情肠，
+#副歌 1
+一路[G]望 跌[D]跌撞 午夜[Em]流星何[C]去何往，
+路海[G]长 青[D]夜旷 越过[C]群山追[G]斜阳，
+#主歌 2
+拨开[G]面纱回[D]望故乡 只见[Em]潮湿的[C]月亮，
+雨水冲[G]不掉常[D]德路上爬[C]满蛛网[G]的门窗，
+梦里回[G]到他的[D]身旁 蜜语[Em]中风不[C]再凉，
+永远都[G]像初次[D]见你那样 [Em]使我心[C]荡漾，
+#副歌 2
+没有奇[G]迹 没有惊[D]喜 尘埃[Em]里花不[C]会哭泣，
+没有质[G]疑 没有道[D]理 褶皱[C]的信乘[G]飞雨，
+一路[G]望 跌[D]跌撞 午夜[Em]流星何[C]去何往，
+路海[G]长 青[D]夜旷 越过[C]群山追[G]斜阳，
+没有奇[G]迹 没有惊[D]喜 尘埃[Em]里花不[C]会哭泣，
+没有质[G]疑 没有道[D]理 褶皱[C]的信乘[G]飞雨，
+#结尾
+漫山遍[G]野你的[D]脸庞 唯有[Em]遗忘是[C]最漫长，
+这是一[G]条必经[D]的路 没有[C]指引出[G]口的光。`
+  },
+  {
+    id: "cheng-ai-ying-c",
+    title: "程艾影",
+    versionTag: "C调夹2品 · 有谱么原版",
+    artist: "赵雷",
+    baseKey: "C",
+    capo: "夹2品 (原调D调)",
+    bpm: 70,
+    playable: "95%",
+    raw: `#主歌 1
+[C]伍岚正和[G]程艾影从[Am7]上海到武[Fmaj7]汉，
+他们[C]要坐十天[G]马车三天[Fmaj7]两夜的轮[C]船，
+[C]泥路上艾影[G]含着糖靠着[Am7]岚正的肩[Fmaj7]膀，
+马车[C]经过村庄[G]石路颠簸[Fmaj7]不渝的情[C]肠，
+#副歌 1
+一路[C]望 跌跌[G]撞 午夜[Am7]流星何去何[Fmaj7]往，
+路海[C]长 青夜[G]旷 越过[Fmaj7]群山追斜[C]阳，
+#主歌 2
+[C]拨开面纱回[G]望故乡 只见[Am7]潮湿的月[Fmaj7]亮，
+雨水[C]冲不掉常德[G]路上爬满[Fmaj7]蛛网的门[C]窗，
+[C]梦里回到他[G]的身旁 蜜语[Am7]中风不再[Fmaj7]凉，
+永远[C]都像初次[G]见你那样 [Fmaj7]使我[G]心荡[C]漾，
+#副歌 2
+没有奇[C]迹 没有惊[G]喜 尘埃[Am7]里花不会哭[Fmaj7]泣，
+没有质[C]疑 没有道[G]理 褶皱[Fmaj7]的信乘飞[C]雨，
+一路[C]望 跌跌[G]撞 午夜[Am7]流星何去何[Fmaj7]往，
+路海[C]长 青夜[G]旷 越过[Fmaj7]群山追斜[C]阳，
+#结尾
+[C]漫山遍野你[G]的脸庞 唯有[Am7]遗忘是最漫[Fmaj7]长，
+这是[C]一条必经[G]的路 没有[Fmaj7]指引出口的[C]光。`
+  },
+  {
+    id: "jue-dui-zhan-you",
+    title: "绝对占有相对自由",
+    versionTag: "C调夹2品 · 有谱么原版",
+    artist: "陈粒",
+    baseKey: "C",
+    capo: "夹2品 (D调演唱)",
+    bpm: 70,
+    playable: "92%",
+    raw: `#前奏
+[Dm7]前奏 (4小节) [Cmaj7]— [Dm7]— [Cmaj7]—
+#主歌 A
+[Dm7]让我占有你 让我占有你在你
+[Cmaj7]最好的年纪 趁一切还崭新
+[Dm7]让我占有你 占有你干净的心
+[Cmaj7]温柔的声音 和完美柔软你的身
+[Fmaj7]体 身体里我全部的
+[Cmaj7]曾经 曾[Fmaj7]经 [G]— [Cmaj7]—
+#主歌 B
+[Dm7]让我占有你 撕碎你然后像风
+[Cmaj7]握在我手里 抱着我像空气
+[Dm7]想把你收集 泡你在福尔马林
+[Cmaj7]盯着你意淫 下半生的每个夜
+[Fmaj7]里 夜里你湿润赤裸你眼
+[Cmaj7]睛 吞了[Fmaj7]我 [G]— [Cmaj7]—
+#副歌
+[Fmaj7]山海的浩瀚 [G]宇宙的浪漫
+[Em]都在我内心翻腾 [Am]在推着我前进
+[Fmaj7]移动的森林 [G]伴着我行
+[Cmaj7]对我眨眼睛 [C]—
+[Fmaj7]要陪你上岸 [G]别的都不管
+[Em]我要逆世界而行 [Am]我要化成灰烬
+[Dm7]把你的路 [G]铺平 [Cmaj7]—`
+  },
+  {
+    id: "qi-miao-neng-li-ge",
+    title: "奇妙能力歌",
+    versionTag: "G调夹2品 · 经典弹唱",
+    artist: "陈粒",
+    baseKey: "G",
+    capo: "夹2品",
+    bpm: 74,
+    playable: "100%",
+    raw: `#主歌 1
+[G]我看过沙漠下暴雨 [D]看过大海亲吻鲨鱼
+[Em]看过黄昏追逐黎明 [C]没看过你
+[G]我知道美丽会老去 [D]生命之外还有生命
+[Em]我知道风里有诗句 [C]不知道你
+#副歌
+[G]我听过荒芜变成热闹 [D]听过尘埃掩埋城堡
+[Em]听过天空拒绝飞鸟 [C]没听过你
+[G]我明白眼前都是气泡 [D]安静的才是苦口良药
+[Em]明白什么才让我骄傲 [C]不明白你`
+  },
+  {
+    id: "cheng-du",
+    title: "成都",
+    versionTag: "C调不夹 · 入门必弹",
+    artist: "赵雷",
+    baseKey: "C",
+    capo: "不夹 (原调C调)",
+    bpm: 72,
+    playable: "100%",
+    raw: `#主歌 1
+[C]让我掉下眼泪的 [Em]不止昨夜的酒
+[F]让我依依不舍的 [G]不止你的温柔
+[Em]余路还要走多久 [Am]你攥着我的手
+[Dm7]让我感到为难的 [G]是挣扎的自由
+#副歌
+[C]和我在成都的街头走一走 [Am]喔哦
+[F]直到所有的灯都熄灭了也不停[G]留
+[C]你会挽着我的衣袖 [Am]我会把手揣进裤兜
+[Dm7]走到玉林路的尽头 [G]坐在小酒馆的门[C]口`
+  },
+  {
+    id: "nan-fang-gu-niang",
+    title: "南方姑娘",
+    versionTag: "C调夹2品 · 温柔弹唱",
+    artist: "赵雷",
+    baseKey: "C",
+    capo: "夹2品",
+    bpm: 68,
+    playable: "100%",
+    raw: `#主歌
+[C]北方的村庄 [G]住着一个[Am]南方的姑娘
+[F]她总是喜欢[G]穿着带花的[C]裙子站在路旁
+[C]她的话不多 [G]但笑起来是[Am]那么平静悠扬
+[F]她柔弱的眼[G]里装的是什么 [C]是思念的忧伤
+#副歌
+[C]南方的小镇 [G]阴雨的冬天[Am]没有北方冷
+[F]她不需要臃[G]肿的棉衣去[C]遮盖她似水的面容
+[C]她在来去的街[G]头留下影子[Am]芳香在回眸人的心头
+[Dm7]眨眼的时间 [G]芳香已飘散[C]影子已不见`
+  },
+  {
+    id: "xu-ni",
+    title: "虚拟",
+    versionTag: "C调夹2品 · 简化好弹版",
+    artist: "陈粒",
+    baseKey: "C",
+    capo: "夹2品",
+    bpm: 68,
+    playable: "96%",
+    raw: `#主歌
+[Dm7]朝露昙花 [G]咫尺天涯
+[Cmaj7]人道是黄河十曲 [Am7]毕竟东流去
+[Dm7]八千年玉老 [G]一夜枯荣
+[Cmaj7]问苍天此生何必 [Am7]—
+#副歌
+[Dm7]你是我未曾拥有无法捕捉的亲[G]昵
+[Cmaj7]我却有你的吻你的魂你的[Am7]心
+[Dm7]载着我飞呀飞呀飞 [G]越过了意义
+[Cmaj7]你是我朝夕相伴触手可及的虚[Am7]拟`
+  }
+];
+
+// Initial user library starts with 3 core songs
+const INITIAL_LIB_IDS = ["cheng-ai-ying-g", "jue-dui-zhan-you", "qi-miao-neng-li-ge"];
+let songs = JSON.parse(localStorage.getItem("custom_songbook_v2") || "null") ||
+            BUILTIN_CATALOG.filter(s => INITIAL_LIB_IDS.includes(s.id));
+
+let currentFilter = "all";
+let currentSong = songs[0];
+let semitoneShift = 0;
+let isPlaying = false;
+let metroOn = true;
+let loopSection = false;
+let currentLineIdx = 0;
+let lineBeatProgress = 0;
+let beatInBar = 0;
+let barCount = 1;
+let timerId = null;
+let audioCtx = null;
+let fontIdx = 1;
+const FONT_SCALES = [0.92, 1.0, 1.12];
+
+function showToast(msg) {
+  const t = document.getElementById("toastBox");
+  t.textContent = msg;
+  t.style.display = "block";
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { t.style.display = "none"; }, 2200);
+}
+
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === "suspended") audioCtx.resume();
+}
+
+function playClick(isStrong) {
+  if (!metroOn) return;
+  try {
+    ensureAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.frequency.value = isStrong ? 880 : 587.33;
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.065);
+  } catch(e){}
+}
+
+function strumChord(chordName) {
+  try {
+    ensureAudio();
+    const base = chordName.replace(/[^A-G#m7maj]/g, "");
+    const freqs = CHORD_FREQS[base] || CHORD_FREQS["G"];
+    freqs.forEach((f, i) => {
+      setTimeout(() => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = f;
+        gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.1);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 1.15);
+      }, i * 38);
+    });
+  } catch(e){}
+}
+
+function shiftChordName(chord, shift) {
+  if (!shift) return chord;
+  return chord.replace(/^[A-G]#?/, (root) => {
+    const idx = NOTES.indexOf(root);
+    if (idx === -1) return root;
+    return NOTES[(idx + shift + 120) % 12];
+  });
+}
+
+// Convert 2-line chord-over-lyric sheets into [Chord]lyric format automatically
+function normalizeSheetInput(raw) {
+  const lines = raw.split(/\r?\n/);
+  const out = [];
+  const chordLineRe = /^\s*([A-G][#b]?(?:m|maj|min|sus|dim|aug|add)?\d*(?:\/[A-G][#b]?)?\s*)+$/;
+  for (let i = 0; i < lines.length; i++) {
+    const cur = lines[i];
+    if (chordLineRe.test(cur) && i + 1 < lines.length && !lines[i+1].trim().startsWith("#") && !chordLineRe.test(lines[i+1])) {
+      const lyric = lines[i+1].trim();
+      const chords = cur.trim().split(/\s+/);
+      let merged = "";
+      const step = Math.max(1, Math.floor(lyric.length / chords.length));
+      for (let c = 0; c < chords.length; c++) {
+        const pos = Math.min(lyric.length, c * step);
+        const nextPos = (c === chords.length - 1) ? lyric.length : Math.min(lyric.length, (c + 1) * step);
+        merged += `[${chords[c]}]${lyric.slice(pos, nextPos)}`;
+      }
+      out.push(merged);
+      i++;
+    } else {
+      out.push(cur);
+    }
+  }
+  return out.join("\n");
+}
+
+function parseRawSheet(raw, shift) {
+  const normalized = normalizeSheetInput(raw);
+  const lines = normalized.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  let currentSec = "主歌";
+  const parsed = [];
+  lines.forEach(line => {
+    if (line.startsWith("#")) {
+      currentSec = line.slice(1).trim();
+      parsed.push({ type: "section", title: currentSec });
+      return;
+    }
+    const regex = /\[([^\]]+)\]([^\[]*)|^([^\[]+)/g;
+    const segs = [];
+    let m;
+    while ((m = regex.exec(line)) !== null) {
+      if (m[1]) {
+        segs.push({ chord: shiftChordName(m[1], shift), text: m[2] || " " });
+      } else if (m[3]) {
+        segs.push({ chord: "", text: m[3] });
+      }
+    }
+    parsed.push({ type: "lyric", section: currentSec, segs, beats: 8 });
+  });
+  return parsed;
+}
+
+function getPreviewLyric(raw) {
+  const lines = raw.split(/\r?\n/).map(s => s.trim()).filter(l => l && !l.startsWith("#"));
+  for (const l of lines) {
+    const clean = l.replace(/\[[^\]]+\]/g, "").replace(/[—\-\s]/g, "");
+    if (clean.length >= 4 && !clean.startsWith("前奏")) {
+      return l.replace(/\[[^\]]+\]/g, "");
+    }
+  }
+  return (lines[0] || "").replace(/\[[^\]]+\]/g, "");
+}
+
+function triggerSearchFocus() {
+  const inp = document.getElementById("searchInput");
+  inp.focus();
+  renderLibrary();
+}
+
+function clearSearch() {
+  document.getElementById("searchInput").value = "";
+  renderLibrary();
+}
+
+function addFromCatalog(catId, evt) {
+  if (evt) evt.stopPropagation();
+  const item = BUILTIN_CATALOG.find(x => x.id === catId);
+  if (!item) return;
+  const exists = songs.find(s => s.id === item.id);
+  if (!exists) {
+    songs.unshift(JSON.parse(JSON.stringify(item)));
+    localStorage.setItem("custom_songbook_v2", JSON.stringify(songs));
+    showToast(`✅ 已将《${item.title}》(${item.versionTag}) 加入我的曲库`);
+  } else {
+    showToast(`🎵《${item.title}》已在曲库中，正在打开...`);
+    openSong(item.id);
+    return;
+  }
+  renderLibrary();
+}
+
+function renderLibrary() {
+  const q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+  const catSec = document.getElementById("catalogResultsSection");
+  const catList = document.getElementById("catalogList");
+
+  // If user typed a search query, show searchable catalog items with 1-click "＋加入曲库"
+  if (q.length > 0) {
+    catSec.style.display = "block";
+    catList.innerHTML = "";
+    const matches = BUILTIN_CATALOG.filter(s =>
+      s.title.toLowerCase().includes(q) ||
+      s.artist.toLowerCase().includes(q) ||
+      (s.versionTag && s.versionTag.toLowerCase().includes(q)) ||
+      s.raw.toLowerCase().includes(q)
+    );
+    if (matches.length === 0) {
+      catList.innerHTML = `<div class="song-card" onclick="openAddModalWithTitle('${q}')">
+        <div class="song-card-left">
+          <div class="song-title">未找到《${q}》现成谱</div>
+          <div class="song-preview">点此直接粘贴有谱么/吉他谱文字，自动生成跟唱谱 ›</div>
+        </div>
+        <button class="add-lib-btn">＋ 贴谱添加</button>
+      </div>`;
+    } else {
+      matches.forEach(item => {
+        const inLib = songs.some(s => s.id === item.id);
+        const card = document.createElement("div");
+        card.className = "song-card";
+        card.onclick = () => {
+          if (!inLib) addFromCatalog(item.id);
+          openSong(item.id);
+        };
+        card.innerHTML = `
+          <div class="song-card-left">
+            <div class="song-title">${item.title} <span class="song-artist">· ${item.artist}</span></div>
+            <div class="song-badges">
+              <span class="badge pink">${item.versionTag || (item.baseKey + '调')}</span>
+              <span class="badge">♩=${item.bpm} BPM</span>
+              <span class="badge">可弹 ${item.playable || '100%'}</span>
+            </div>
+            <div class="song-preview">${getPreviewLyric(item.raw)}</div>
+          </div>
+          <button class="add-lib-btn ${inLib ? 'added' : ''}" onclick="addFromCatalog('${item.id}', event)">
+            ${inLib ? '✓ 已在曲库' : '＋ 加入曲库'}
+          </button>
+        `;
+        catList.appendChild(card);
+      });
+    }
+  } else {
+    catSec.style.display = "none";
+  }
+
+  const list = document.getElementById("songList");
+  list.innerHTML = "";
+  const filtered = songs.filter(s => {
+    if (currentFilter !== "all" && s.artist !== currentFilter) return false;
+    if (q && !(s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q) || s.raw.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  document.getElementById("myLibCount").textContent = `共 ${filtered.length} 首`;
+
+  filtered.forEach(s => {
+    const cleanPreview = getPreviewLyric(s.raw);
+    const div = document.createElement("div");
+    div.className = "song-card";
+    div.onclick = () => openSong(s.id);
+    div.innerHTML = `
+      <div class="song-card-left">
+        <div class="song-title">${s.title} <span class="song-artist">· ${s.artist}</span></div>
+        <div class="song-badges">
+          <span class="badge pink">${s.versionTag || (s.baseKey + '调 · ' + s.capo)}</span>
+          <span class="badge">♩=${s.bpm} BPM</span>
+          <span class="badge">可弹 ${s.playable || '100%'}</span>
+        </div>
+        <div class="song-preview">${cleanPreview}</div>
+      </div>
+      <div style="color:var(--accent);font-weight:800;font-size:18px;padding-left:6px;">›</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function openAddModalWithTitle(t) {
+  document.getElementById("newTitle").value = t;
+  openAddModal();
+}
+
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll("#filterPills .pill").forEach(el => {
+    el.classList.toggle("active", el.textContent.includes(f === "all" ? "全部" : f));
+  });
+  renderLibrary();
+}
+
+function openSong(id) {
+  stopPlay();
+  currentSong = songs.find(s => s.id === id) || BUILTIN_CATALOG.find(s => s.id === id) || songs[0];
+  semitoneShift = 0;
+  currentLineIdx = 0;
+  document.getElementById("libraryView").classList.remove("active");
+  document.getElementById("sheetView").classList.add("active");
+  renderSongSheet();
+}
+
+function backToLibrary() {
+  stopPlay();
+  document.getElementById("sheetView").classList.remove("active");
+  document.getElementById("libraryView").classList.add("active");
+  renderLibrary();
+}
+
+function renderSongSheet() {
+  const s = currentSong;
+  const activeKey = shiftChordName(s.baseKey, semitoneShift);
+  document.getElementById("stTitle").textContent = s.title;
+  document.getElementById("stArtist").textContent = `${s.artist} · 4/4拍`;
+  document.getElementById("ctrlKey").innerHTML = `${activeKey}调 <span>›</span>`;
+  document.getElementById("ctrlCapo").textContent = semitoneShift === 0 ? s.capo : `已移调 (${semitoneShift > 0 ? '+'+semitoneShift : semitoneShift})`;
+  document.getElementById("ctrlBpm").innerHTML = `${s.bpm} <span>BPM</span>`;
+  document.getElementById("ctrlPlayable").innerHTML = `${s.playable || '100%'} <span>›</span>`;
+
+  const parsed = parseRawSheet(s.raw, semitoneShift);
+  const container = document.getElementById("sheetContainer");
+  const secTabs = document.getElementById("secTabs");
+  const chordStrip = document.getElementById("songChordStrip");
+  container.innerHTML = "";
+  secTabs.innerHTML = "";
+  chordStrip.innerHTML = "";
+
+  const uniqueChords = new Set();
+  const sectionsSeen = [];
+  let lyricIdx = 0;
+
+  parsed.forEach(item => {
+    if (item.type === "section") {
+      const h = document.createElement("div");
+      h.className = "section-header";
+      h.textContent = item.title;
+      container.appendChild(h);
+      if (!sectionsSeen.find(x => x.title === item.title)) {
+        sectionsSeen.push({ title: item.title, lineIdx: lyricIdx });
+      }
+    } else {
+      const idx = lyricIdx++;
+      const row = document.createElement("div");
+      row.className = "lyric-line" + (idx === currentLineIdx ? " active" : "");
+      row.id = `line-${idx}`;
+      row.dataset.section = item.section;
+      row.onclick = () => jumpToLine(idx);
+
+      const prog = document.createElement("div");
+      prog.className = "line-progress";
+      prog.id = `prog-${idx}`;
+      row.appendChild(prog);
+
+      const segRow = document.createElement("div");
+      segRow.className = "segments-row";
+      let chordCountInLine = 0;
+      item.segs.forEach((sg) => {
+        if (sg.chord) {
+          uniqueChords.add(sg.chord);
+          chordCountInLine++;
+        }
+        const segEl = document.createElement("div");
+        segEl.className = "seg";
+        const chEl = document.createElement("div");
+        chEl.className = "ch";
+        if (sg.chord) {
+          chEl.dataset.chordIdx = String(chordCountInLine - 1);
+          chEl.textContent = sg.chord;
+          chEl.onclick = (e) => { e.stopPropagation(); strumChord(sg.chord); };
+        }
+        const txEl = document.createElement("div");
+        txEl.className = "tx";
+        if (sg.chord && sg.text.trim().length > 0) {
+          txEl.innerHTML = `<u>${sg.text[0]}</u>${sg.text.slice(1)}`;
+        } else {
+          txEl.textContent = sg.text;
+        }
+        segEl.appendChild(chEl);
+        segEl.appendChild(txEl);
+        segRow.appendChild(segEl);
+      });
+      row.dataset.chordCount = String(Math.max(1, chordCountInLine));
+      row.appendChild(segRow);
+      container.appendChild(row);
+    }
+  });
+
+  uniqueChords.forEach(c => {
+    const chip = document.createElement("span");
+    chip.className = "chord-chip";
+    chip.textContent = `🔊 ${c}`;
+    chip.onclick = () => strumChord(c);
+    chordStrip.appendChild(chip);
+  });
+
+  sectionsSeen.forEach((sec, i) => {
+    const tab = document.createElement("div");
+    tab.className = "sec-tab" + (i === 0 ? " active" : "");
+    tab.dataset.secTitle = sec.title;
+    tab.textContent = sec.title;
+    tab.onclick = () => jumpToLine(sec.lineIdx);
+    secTabs.appendChild(tab);
+  });
+
+  updateActiveLineUI();
+}
+
+function jumpToLine(idx) {
+  currentLineIdx = idx;
+  lineBeatProgress = 0;
+  beatInBar = 0;
+  updateActiveLineUI();
+}
+
+function updateActiveLineUI() {
+  const lines = document.querySelectorAll(".lyric-line");
+  lines.forEach((el, i) => {
+    const active = i === currentLineIdx;
+    el.classList.toggle("active", active);
+    const prog = document.getElementById(`prog-${i}`);
+    if (prog) prog.style.width = active ? `${(lineBeatProgress / 8) * 100}%` : "0%";
+  });
+  const activeEl = document.getElementById(`line-${currentLineIdx}`);
+  if (activeEl) {
+    if (isPlaying) {
+      activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    // Sync bottom section tab highlight with current active line's section!
+    const curSec = activeEl.dataset.section;
+    document.querySelectorAll("#secTabs .sec-tab").forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.secTitle === curSec);
+    });
+    // Pulse the active chord in the current line proportional to how many chords the line has
+    document.querySelectorAll(".ch.pulse").forEach(el => el.classList.remove("pulse"));
+    if (isPlaying) {
+      const chordCount = parseInt(activeEl.dataset.chordCount || "4", 10);
+      const beatsPerChord = 8 / chordCount;
+      const activeChordIdx = Math.min(chordCount - 1, Math.floor(lineBeatProgress / beatsPerChord));
+      const chEl = activeEl.querySelector(`.ch[data-chord-idx="${activeChordIdx}"]`);
+      if (chEl) chEl.classList.add("pulse");
+    }
+  }
+}
+
+function togglePlay() {
+  if (isPlaying) {
+    stopPlay();
+  } else {
+    startPlay();
+  }
+}
+
+function startPlay() {
+  isPlaying = true;
+  document.getElementById("playBtn").innerHTML = "⏸ 暂停跟唱";
+  document.getElementById("beatStatus").textContent = "随拍跟唱中";
+  if (navigator.wakeLock) {
+    navigator.wakeLock.request("screen").catch(()=>{});
+  }
+  const stepMs = (60 / currentSong.bpm) * 1000 / 4;
+  let subTick = 0;
+  updateActiveLineUI();
+  timerId = setInterval(() => {
+    if (subTick % 4 === 0) {
+      for (let i = 0; i < 4; i++) {
+        document.getElementById(`bdot${i}`).classList.toggle("on", i === beatInBar);
+      }
+      const bear = document.getElementById("bearMascot");
+      bear.classList.toggle("nod", beatInBar === 0 || beatInBar === 2);
+      document.getElementById("barCounter").textContent = `第 ${barCount} 小节 · ${beatInBar+1}/4拍`;
+      playClick(beatInBar === 0);
+      beatInBar = (beatInBar + 1) % 4;
+      if (beatInBar === 0) barCount++;
+    }
+    subTick++;
+    lineBeatProgress += 0.25;
+    const totalLines = document.querySelectorAll(".lyric-line").length;
+    if (lineBeatProgress >= 8) {
+      lineBeatProgress = 0;
+      const curSec = document.getElementById(`line-${currentLineIdx}`)?.dataset.section;
+      if (currentLineIdx + 1 < totalLines) {
+        const nextSec = document.getElementById(`line-${currentLineIdx+1}`)?.dataset.section;
+        if (loopSection && nextSec !== curSec) {
+          let first = 0;
+          for (let k = 0; k < totalLines; k++) {
+            if (document.getElementById(`line-${k}`)?.dataset.section === curSec) { first = k; break; }
+          }
+          currentLineIdx = first;
+        } else {
+          currentLineIdx++;
+        }
+      } else {
+        currentLineIdx = 0;
+        if (!loopSection) { stopPlay(); return; }
+      }
+    }
+    updateActiveLineUI();
+  }, stepMs);
+}
+
+function stopPlay() {
+  isPlaying = false;
+  if (timerId) { clearInterval(timerId); timerId = null; }
+  const btn = document.getElementById("playBtn");
+  if (btn) btn.innerHTML = "▶ 开始随拍跟唱";
+  const st = document.getElementById("beatStatus");
+  if (st) st.textContent = "点句子可跳拍";
+}
+
+function transposeKey() {
+  if (currentSong.title === "程艾影") {
+    semitoneShift = (semitoneShift === 0) ? 5 : 0;
+  } else {
+    semitoneShift = (semitoneShift + 1) % 12;
+  }
+  renderSongSheet();
+}
+
+function changeBpm(delta) {
+  currentSong.bpm = Math.max(45, Math.min(150, currentSong.bpm + delta));
+  document.getElementById("ctrlBpm").innerHTML = `${currentSong.bpm} <span>BPM</span>`;
+  if (isPlaying) { stopPlay(); startPlay(); }
+}
+
+function strumCurrentFirstChord() {
+  strumChord(shiftChordName(currentSong.baseKey, semitoneShift));
+}
+
+function toggleMetro() {
+  metroOn = !metroOn;
+  document.getElementById("metroBtn").classList.toggle("on", metroOn);
+}
+
+function toggleLoop() {
+  loopSection = !loopSection;
+  document.getElementById("loopBtn").classList.toggle("on", loopSection);
+}
+
+function toggleTheme() {
+  const isDark = document.body.getAttribute("data-theme") === "dark";
+  if (isDark) {
+    document.body.removeAttribute("data-theme");
+    document.getElementById("themeBtn").textContent = "🌙 夜间";
+  } else {
+    document.body.setAttribute("data-theme", "dark");
+    document.getElementById("themeBtn").textContent = "☀️ 奶油";
+  }
+}
+
+function cycleFont() {
+  fontIdx = (fontIdx + 1) % FONT_SCALES.length;
+  document.documentElement.style.setProperty("--font-scale", FONT_SCALES[fontIdx]);
+  const labels = ["标准", "大字", "超大"];
+  document.getElementById("fontBtn").textContent = labels[fontIdx];
+}
+
+function openAddModal() {
+  document.getElementById("addModal").classList.add("open");
+}
+
+function openChordModal() {
+  const grid = document.getElementById("chordGrid");
+  grid.innerHTML = "";
+  Object.keys(CHORD_FINGERS).forEach(ch => {
+    const card = document.createElement("div");
+    card.className = "chord-card";
+    card.onclick = () => strumChord(ch);
+    card.innerHTML = `
+      <div style="font-size:18px;font-weight:800;color:var(--accent);">${ch} 和弦 🔊</div>
+      <div style="font-size:12px;color:var(--text-sub);margin-top:4px;">${CHORD_FINGERS[ch]}</div>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById("chordModal").classList.add("open");
+}
+
+function closeModals() {
+  document.querySelectorAll(".modal-mask").forEach(el => el.classList.remove("open"));
+}
+
+function saveNewSong() {
+  const title = document.getElementById("newTitle").value.trim() || "未命名歌曲";
+  const artist = document.getElementById("newArtist").value.trim() || "精选";
+  const baseKey = document.getElementById("newKey").value.trim() || "G";
+  const capo = document.getElementById("newCapo").value.trim() || "不夹";
+  const bpm = parseInt(document.getElementById("newBpm").value, 10) || 70;
+  const rawInput = document.getElementById("newSheet").value.trim() || "#主歌\n[G]示例歌词[D]示例歌词";
+  const normalizedRaw = normalizeSheetInput(rawInput);
+  const newSong = {
+    id: "song-" + Date.now(),
+    title, artist, baseKey, capo,
+    versionTag: `${baseKey}调 · ${capo}`,
+    bpm, playable: "100%", raw: normalizedRaw
+  };
+  songs.unshift(newSong);
+  localStorage.setItem("custom_songbook_v2", JSON.stringify(songs));
+  closeModals();
+  showToast(`✅ 已将《${title}》保存进我的曲库`);
+  renderLibrary();
+}
+
+renderLibrary();
+</script>
+</body>
+</html>
