@@ -395,12 +395,13 @@ body {
   <div class="search-row">
     <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜歌手或歌名(如：赵雷、任素汐、程艾影、胡广生)..." oninput="renderLibrary()">
     <button class="btn-primary" onclick="triggerSearchFocus()">搜索曲库</button>
-    <button class="btn-secondary" onclick="openAddModal()">＋贴谱</button>
+    <button class="btn-secondary" onclick="openAddModal()">＋上传新谱</button>
   </div>
   <div class="filter-pills" id="filterPills">
     <span class="pill active" onclick="setFilter('all')">全部</span>
-    <span class="pill" onclick="setFilter('赵雷')">赵雷</span>
+    <span class="pill" onclick="setFilter('宋冬野')">宋冬野</span>
     <span class="pill" onclick="setFilter('任素汐')">任素汐</span>
+    <span class="pill" onclick="setFilter('赵雷')">赵雷</span>
     <span class="pill" onclick="setFilter('陈粒')">陈粒</span>
   </div>
 
@@ -504,7 +505,7 @@ body {
       <label class="form-lbl">支持：① [G]歌词 或 [G:2]指定拍数 ② 上行和弦、下行歌词双行谱</label>
       <textarea id="newSheet" class="form-area" placeholder="#主歌 1&#10;G        D        Em       C&#10;伍岚正和程艾影从上海到武汉&#10;或：&#10;[G]伍岚正[D]和程艾影从[Em]上海到[C]武汉"></textarea>
     </div>
-    <button class="btn-primary" style="width:100%;padding:12px;" onclick="saveNewSong()">保存进我的曲库</button>
+    <button class="btn-primary" style="width:100%;padding:12px;" id="saveCloudBtn" onclick="saveNewSong()">☁️ 保存并直接同步到她的曲库</button>
   </div>
 </div>
 
@@ -578,6 +579,86 @@ const PLAYABILITY_BY_KEY = {
 
 // Built-in searchable Yoopu / Folk Guitar Catalog (赵雷 + 任素汐 + 陈粒)
 const BUILTIN_CATALOG = [
+  {
+    id: "dong-xiao-jie-g",
+    title: "董小姐",
+    versionTag: "有谱么G调原谱 · 含Gsus4/G7",
+    artist: "宋冬野",
+    baseKey: "G",
+    defaultCapo: 0,
+    origKey: "E",
+    bpm: 62,
+    playable: "95%",
+    raw: `#主歌 A
+[G:2]董小姐 [C:2]你从没[Bm:2]忘记你的微[Em:2]笑
+就算你[C:2]和我一样 [D:2]渴望着[G:2]衰老[Gsus4:2]
+[G:2]董小姐 [C:2]你嘴角[Bm:2]向下的时候很[Em:2]美
+就像[C:2]安和桥下 [D:2]清澈的[G:2]水[Gsus4:2]
+[G:2]董小姐 [C:2]我也[Bm:2]是个复杂的[Em:2]动物
+嘴上[C:2]一句带过 [D:2]心里却一直重[G:2]复[Gsus4:2]
+[G:2]董小姐 [C:2]鼓楼的[Bm:2]夜晚时间匆[Em:2]匆
+陌生的[C:2]人 请给我[D:2]一支兰[G:2]州[G7:2]
+#副歌 A
+[C:2]所以那些可[D:2]能都不是真[Bm:2]的董小[Em:2]姐
+你[C:2]才不是一个没[D:2]有故事的[G:2]女同学[G7:2]
+[C:2]爱上一匹野[D:2]马 可我的[Bm:2]家里没有草[Em:2]原
+这让我[C:2]感到绝望 [D:2]董小[G:2]姐[G7:2]
+#主歌 B
+[G:2]董小姐 [C:2]你熄灭[Bm:2]了烟说起从[Em:2]前
+你说[C:2]前半生就[D:2]这样吧 还有明[G:2]天[Gsus4:2]
+[G:2]董小姐 [C:2]你可[Bm:2]知道我说够了[Em:2]再见
+在[C:2]五月的早晨 [D:2]终于丢失了[G:2]睡眠[G7:2]
+#副歌 B & 结尾
+[C:2]所以那些可[D:2]能都不是真[Bm:2]的董小[Em:2]姐
+你[C:2]才不是一个没[D:2]有故事的[G:2]女同学[G7:2]
+[C:2]爱上一匹野[D:2]马 可我的[Bm:2]家里没有草[Em:2]原
+这让我[C:2]感到绝望 [D:2]董小[G:2]姐[G7:2]
+[C:2]所以那些可[D:2]能都会是真[Bm:2]的董小[Em:2]姐
+谁会[C:2]不厌其烦的[D:2]安慰那无知的[G:2]少年[G7:2]
+[C:2]我想和你[D:2]一样 不顾[Bm:2]那些所[Em:2]以
+跟我[C:2]走吧 [D:2]董小[G:2]姐[Gsus4:2]
+躁起[C:2]来吧 [D:2]董小[Gsus4:2]姐[G:2]`
+  },
+  {
+    id: "dong-xiao-jie-c",
+    title: "董小姐 (C调免大横按版)",
+    versionTag: "有谱么C调简编 · 夹4品原调",
+    artist: "宋冬野",
+    baseKey: "C",
+    defaultCapo: 4,
+    origKey: "E",
+    bpm: 68,
+    playable: "99%",
+    raw: `#主歌 A
+[C:2]董小姐 [Fmaj7:2]你从没[Em:2]忘记你的微[Am:2]笑
+就算你[Fmaj7:2]和我一样 [G:2]渴望着[C:4]衰老
+[C:2]董小姐 [Fmaj7:2]你嘴角[Em:2]向下的时候很[Am:2]美
+就像[Fmaj7:2]安和桥下 [G:2]清澈的[C:4]水
+[C:2]董小姐 [Fmaj7:2]我也[Em:2]是个复杂的[Am:2]动物
+嘴上[Fmaj7:2]一句带过 [G:2]心里却一直重[C:4]复
+[C:2]董小姐 [Fmaj7:2]鼓楼的[Em:2]夜晚时间匆[Am:2]匆
+陌生的[Fmaj7:2]人 请给我[G:2]一支兰[C:4]州
+#副歌 A
+[Fmaj7:2]所以那些可[G:2]能都不是真[Em:2]的董小[Am:2]姐
+你[Fmaj7:2]才不是一个没[G:2]有故事的[C:4]女同学
+[Fmaj7:2]爱上一匹野[G:2]马 可我的[Em:2]家里没有草[Am:2]原
+这让我[Fmaj7:2]感到绝望 [G:2]董小[C:4]姐
+#主歌 B
+[C:2]董小姐 [Fmaj7:2]你熄灭[Em:2]了烟说起从[Am:2]前
+你说[Fmaj7:2]前半生就这样[G:2]吧 还有[C:4]明天
+[C:2]董小姐 [Fmaj7:2]你可[Em:2]知道我说够了[Am:2]再见
+在[Fmaj7:2]五月的早晨 [G:2]终于丢失了睡[C:4]眠
+#副歌 B & 结尾
+[Fmaj7:2]所以那些可[G:2]能都不是真[Em:2]的董小[Am:2]姐
+你[Fmaj7:2]才不是一个没[G:2]有故事的[C:4]女同学
+[Fmaj7:2]爱上一匹野[G:2]马 可我的[Em:2]家里没有草[Am:2]原
+这让我[Fmaj7:2]感到绝望 [G:2]董小[C:4]姐
+[Fmaj7:2]所以那些可[G:2]能都会是真[Em:2]的董小[Am:2]姐
+谁会[Fmaj7:2]不厌其烦的[G:2]安慰那无知的[C:4]少年
+[Fmaj7:2]我想和你一[G:2]样 不顾[Em:2]那些所[Am:2]以
+跟我[Fmaj7:2]走吧 [G:2]董小[C:4]姐
+躁起[Fmaj7:2]来吧 [G:2]董小[C:4]姐`
+  },
   {
     id: "cheng-ai-ying-g",
     title: "程艾影",
@@ -1047,19 +1128,35 @@ const BUILTIN_CATALOG = [
   }
 ];
 
-const INITIAL_LIB_IDS = ["cheng-ai-ying-g", "hu-guang-sheng", "wo-yao-ni", "cheng-du", "jue-dui-zhan-you"];
-let savedSongs = null;
+let savedSongs = [];
 try {
-  savedSongs = JSON.parse(localStorage.getItem("custom_songbook_v5") || "null");
-} catch(e){}
-// Always sync built-in catalog updates into any saved songs so lyrics/chords stay 100% accurate
-if (savedSongs && Array.isArray(savedSongs)) {
-  savedSongs = savedSongs.map(s => {
+  savedSongs = JSON.parse(localStorage.getItem("custom_songbook_v6") || localStorage.getItem("custom_songbook_v5") || "[]") || [];
+} catch(e){ savedSongs = []; }
+
+function buildMergedSongList(customList) {
+  const result = [];
+  const seen = new Set();
+  // Keep any user-uploaded / cloud-synced songs at the top if not in BUILTIN_CATALOG
+  (customList || []).forEach(s => {
+    if (!s || !s.id || !s.title || !s.raw) return;
     const builtin = BUILTIN_CATALOG.find(b => b.id === s.id);
-    return builtin ? JSON.parse(JSON.stringify(builtin)) : s;
+    if (!builtin && !seen.has(s.id)) {
+      result.push(s);
+      seen.add(s.id);
+    }
   });
+  // Then include all BUILTIN_CATALOG songs (always up to date)
+  BUILTIN_CATALOG.forEach(b => {
+    if (!seen.has(b.id)) {
+      result.push(JSON.parse(JSON.stringify(b)));
+      seen.add(b.id);
+    }
+  });
+  return result;
 }
-let songs = savedSongs || BUILTIN_CATALOG.filter(s => INITIAL_LIB_IDS.includes(s.id));
+
+let songs = buildMergedSongList(savedSongs);
+localStorage.setItem("custom_songbook_v6", JSON.stringify(songs));
 
 let currentFilter = "all";
 let currentSong = songs[0];
@@ -1775,13 +1872,16 @@ function saveNewSong() {
     bpm, playable: "100%",
     raw: normalizedRaw
   };
-  songs.unshift(newSong);
-  BUILTIN_CATALOG.unshift(newSong);
-  localStorage.setItem("custom_songbook_v5", JSON.stringify(songs));
+  mergeSongIntoLibrary(newSong);
   closeModals();
-  showToast(`✅ 已保存《${title}》到我的手机曲库`);
+  renderArtistPills();
   renderLibrary();
   openSong(newSong.id);
+  showToast(`☁️ 正在把《${title}》同步到云端曲库...`);
+  pushSongToCloud(newSong).then(ok => {
+    if (ok) showToast(`✅ 《${title}》已同步云端！她打开网页即可直接看到`);
+    else showToast(`✅ 已保存《${title}》到本地曲库`);
+  });
 }
 
 
@@ -1881,14 +1981,124 @@ function importLibraryCode() {
 }
 
 function mergeSongIntoLibrary(songObj) {
+  if (!songObj || !songObj.title || !songObj.raw) return false;
   if (!songObj.id) songObj.id = "song-" + Date.now();
   const idx = songs.findIndex(x => x.id === songObj.id);
-  if (idx >= 0) songs[idx] = songObj;
-  else songs.unshift(songObj);
-  if (!BUILTIN_CATALOG.some(x => x.id === songObj.id)) {
-    BUILTIN_CATALOG.unshift(songObj);
+  let isNewOrUpdated = false;
+  if (idx >= 0) {
+    if (songs[idx].raw !== songObj.raw || songs[idx].title !== songObj.title || songs[idx].versionTag !== songObj.versionTag) {
+      songs[idx] = songObj;
+      isNewOrUpdated = true;
+    }
+  } else {
+    songs.unshift(songObj);
+    isNewOrUpdated = true;
   }
-  localStorage.setItem("custom_songbook_v5", JSON.stringify(songs));
+  const bIdx = BUILTIN_CATALOG.findIndex(x => x.id === songObj.id);
+  if (bIdx >= 0) BUILTIN_CATALOG[bIdx] = songObj;
+  else BUILTIN_CATALOG.unshift(songObj);
+  localStorage.setItem("custom_songbook_v6", JSON.stringify(songs));
+  return isNewOrUpdated;
+}
+
+function renderArtistPills() {
+  const pillBox = document.getElementById("filterPills");
+  if (!pillBox) return;
+  const baseArtists = ["宋冬野", "任素汐", "赵雷", "陈粒"];
+  songs.forEach(s => {
+    if (s.artist && !baseArtists.includes(s.artist)) baseArtists.push(s.artist);
+  });
+  let htmlPills = `<span class="pill ${currentFilter==='all'?'active':''}" onclick="setFilter('all')">全部</span>`;
+  baseArtists.forEach(a => {
+    htmlPills += `<span class="pill ${currentFilter===a?'active':''}" onclick="setFilter('${a}')">${a}</span>`;
+  });
+  pillBox.innerHTML = htmlPills;
+}
+
+const CLOUD_SYNC_TOPIC = "jimmybrst_songbook_sync_v6";
+
+async function pushSongToCloud(songObj) {
+  try {
+    const res = await fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}`, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ type: "upsert_song", song: songObj, ts: Date.now() })
+    });
+    return res.ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function syncFromCloud() {
+  let changed = 0;
+  // 1. Pull permanent cloud_songs.json from GitHub API (instant, bypasses Pages build queue) + relative fallback
+  const ghUrls = [
+    `https://api.github.com/repos/jimmybrst/jimmybrst.github.io/contents/cloud_songs.json?t=${Date.now()}`,
+    `./cloud_songs.json?t=${Date.now()}`
+  ];
+  for (const u of ghUrls) {
+    try {
+      const headers = u.includes("api.github.com") ? { "Accept": "application/vnd.github.raw+json" } : {};
+      const r = await fetch(u, { headers, cache: "no-store" });
+      if (r.ok) {
+        const list = await r.json();
+        if (Array.isArray(list)) {
+          list.slice().reverse().forEach(item => {
+            if (mergeSongIntoLibrary(item)) changed++;
+          });
+          break;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 2. Pull zero-config instant browser uploads from ntfy channel
+  try {
+    const r2 = await fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all`, { cache: "no-store" });
+    if (r2.ok) {
+      const text = await r2.text();
+      const lines = text.split("\n").filter(Boolean);
+      lines.forEach(line => {
+        try {
+          const evt = JSON.parse(line);
+          if (evt && evt.message) {
+            const payload = JSON.parse(evt.message);
+            if (payload && payload.song && mergeSongIntoLibrary(payload.song)) {
+              changed++;
+            } else if (Array.isArray(payload)) {
+              payload.forEach(s => { if (mergeSongIntoLibrary(s)) changed++; });
+            }
+          }
+        } catch (err) {}
+      });
+    }
+  } catch (e) {}
+
+  if (changed > 0) {
+    renderArtistPills();
+    renderLibrary();
+  }
+}
+
+function startLiveCloudSubscription() {
+  try {
+    if (typeof EventSource === "undefined") return;
+    const es = new EventSource(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`);
+    es.onmessage = (e) => {
+      try {
+        const evt = JSON.parse(e.data);
+        if (evt && evt.message) {
+          const payload = JSON.parse(evt.message);
+          if (payload && payload.song && mergeSongIntoLibrary(payload.song)) {
+            renderArtistPills();
+            renderLibrary();
+            showToast(`🍒 曲库已自动同步新歌：《${payload.song.title}》`);
+          }
+        }
+      } catch (err) {}
+    };
+  } catch (e) {}
 }
 
 function checkUrlShareImport() {
@@ -1900,6 +2110,8 @@ function checkUrlShareImport() {
       if (songObj && songObj.title && songObj.raw) {
         mergeSongIntoLibrary(songObj);
         history.replaceState(null, "", window.location.pathname);
+        renderArtistPills();
+        renderLibrary();
         openSong(songObj.id);
         showToast(`🍒 已自动导入分享曲谱《${songObj.title}》`);
       }
@@ -1907,8 +2119,14 @@ function checkUrlShareImport() {
   }
 }
 
+renderArtistPills();
 renderLibrary();
 checkUrlShareImport();
+syncFromCloud();
+startLiveCloudSubscription();
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") syncFromCloud();
+});
 </script>
 </body>
 </html>
