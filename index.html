@@ -347,6 +347,25 @@ body {
   background: #E07A5F;
 }
 
+
+.ch-beats {
+  font-size: 9.5px; font-weight: 600; color: var(--text-sub);
+  opacity: 0.8; margin-left: 2px; letter-spacing: 0;
+}
+.ch.pulse .ch-beats {
+  color: #fff; opacity: 0.95;
+}
+.sync-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; padding: 11px 12px; margin-bottom: 12px;
+}
+.sync-card-title {
+  font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 4px;
+}
+.sync-card-desc {
+  font-size: 11.5px; color: var(--text-sub); line-height: 1.45; margin-bottom: 8px;
+}
+
 </style>
 </head>
 <body>
@@ -362,6 +381,7 @@ body {
     </div>
   </div>
   <div class="header-actions">
+    <button class="icon-btn" id="syncBtn" onclick="openSyncModal()">⇄ 同步</button>
     <button class="icon-btn" id="fontBtn" onclick="cycleFont()">大字</button>
     <button class="icon-btn" id="themeBtn" onclick="toggleTheme()">🌙 夜间</button>
   </div>
@@ -478,7 +498,7 @@ body {
       </div>
     </div>
     <div class="form-row">
-      <label class="form-lbl">支持两种格式：① [G]歌词 括号谱 ② 上行和弦、下行歌词的双行谱</label>
+      <label class="form-lbl">支持：① [G]歌词 或 [G:2]指定拍数 ② 上行和弦、下行歌词双行谱</label>
       <textarea id="newSheet" class="form-area" placeholder="#主歌 1&#10;G        D        Em       C&#10;伍岚正和程艾影从上海到武汉&#10;或：&#10;[G]伍岚正[D]和程艾影从[Em]上海到[C]武汉"></textarea>
     </div>
     <button class="btn-primary" style="width:100%;padding:12px;" onclick="saveNewSong()">保存进我的曲库</button>
@@ -504,6 +524,31 @@ body {
     <div class="form-lbl">2. 选择变调夹位置（Capo 品位）</div>
     <div class="capo-grid" id="capoGrid"></div>
     <button class="btn-primary" style="width:100%;padding:11px;margin-top:4px;" onclick="closeModals()">完成设置</button>
+  </div>
+</div>
+
+<!-- OPENSONG-STYLE SYNC / SHARE / BACKUP MODAL -->
+<div class="modal-mask" id="syncModal" onclick="if(event.target===this)closeModals()">
+  <div class="modal-sheet">
+    <div class="modal-title">
+      <span>⇄ 曲库一键分享 & 跨手机同步备份</span>
+      <span style="cursor:pointer;padding:2px 6px;" onclick="closeModals()">✕</span>
+    </div>
+    <div class="sync-card">
+      <div class="sync-card-title">🔗 1. 微信直发单曲链接（对方点开自动入库）</div>
+      <div class="sync-card-desc" id="shareSongDesc">将当前曲谱打包进专属网址，发给朋友后在 Safari 点开即可自动加入她的曲库。</div>
+      <button class="btn-primary" style="width:100%;padding:9px;" onclick="copyCurrentSongShareUrl()">复制当前歌曲分享链接</button>
+    </div>
+    <div class="sync-card">
+      <div class="sync-card-title">📦 2. 整套曲库一键导出 / 粘贴恢复</div>
+      <div class="sync-card-desc">换手机或同步多首自定义谱时，点“导出备份码”复制，在另一台手机粘贴到下方点“导入合并”即可。</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <button class="btn-secondary" style="flex:1;padding:8px;" onclick="exportLibraryCode()">📤 复制全部曲库备份码</button>
+        <button class="btn-secondary" style="flex:1;padding:8px;" onclick="downloadLibraryJson()">💾 下载 .json 备份</button>
+      </div>
+      <textarea id="syncDataInput" class="form-area" style="height:68px;font-size:11.5px;" placeholder="在此粘贴曲库备份码 JSON 或分享链接，点下方按钮一键导入合并..."></textarea>
+      <button class="btn-primary" style="width:100%;padding:9px;margin-top:8px;" onclick="importLibraryCode()">📥 一键导入合并到我的曲库</button>
+    </div>
   </div>
 </div>
 
@@ -1031,6 +1076,9 @@ function normalizeSheetInput(raw) {
   return out.join("\n");
 }
 
+// chord-mark inspired bar & beat duration parser:
+// Supports explicit [Chord:beats] (e.g. [Fmaj7:2][G:2][C:4]) or smart musical beat allocation:
+// 1 chord = 4 beats; 2 chords = 4+4 beats; 3 chords = 2+2+4 beats (classic folk cadence); 4 chords = 2+2+2+2 beats.
 function parseRawSheet(raw, shift) {
   const normalized = normalizeSheetInput(raw);
   const lines = normalized.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
@@ -1047,12 +1095,41 @@ function parseRawSheet(raw, shift) {
     let m;
     while ((m = regex.exec(line)) !== null) {
       if (m[1]) {
-        segs.push({ chord: shiftChordName(m[1], shift), text: m[2] || " " });
+        const parts = m[1].split(":");
+        const rawChord = parts[0].trim();
+        const explicitBeats = parts[1] ? parseFloat(parts[1]) : null;
+        segs.push({
+          chord: shiftChordName(rawChord, shift),
+          explicitBeats: explicitBeats,
+          text: m[2] || " "
+        });
       } else if (m[3]) {
-        segs.push({ chord: "", text: m[3] });
+        segs.push({ chord: "", explicitBeats: null, text: m[3] });
       }
     }
-    parsed.push({ type: "lyric", section: currentSec, segs, beats: 8 });
+    const chordSegs = segs.filter(sg => sg.chord);
+    const n = chordSegs.length;
+    let defaultPattern = [8];
+    if (n === 1) defaultPattern = [4];
+    else if (n === 2) defaultPattern = [4, 4];
+    else if (n === 3) defaultPattern = [2, 2, 4];
+    else if (n === 4) defaultPattern = [2, 2, 2, 2];
+    else if (n > 4) defaultPattern = Array(n).fill(2);
+
+    let cumBeat = 0;
+    let chordIdx = 0;
+    segs.forEach(sg => {
+      if (sg.chord) {
+        const b = (sg.explicitBeats && sg.explicitBeats > 0) ? sg.explicitBeats : (defaultPattern[chordIdx] || 2);
+        sg.beats = b;
+        sg.startBeat = cumBeat;
+        sg.endBeat = cumBeat + b;
+        cumBeat += b;
+        chordIdx++;
+      }
+    });
+    const totalBeats = cumBeat > 0 ? cumBeat : 8;
+    parsed.push({ type: "lyric", section: currentSec, segs, beats: totalBeats });
   });
   return parsed;
 }
@@ -1301,7 +1378,11 @@ function renderSongSheet() {
         chEl.className = "ch";
         if (sg.chord) {
           chEl.dataset.chordIdx = String(chordCountInLine - 1);
-          chEl.textContent = sg.chord;
+          chEl.dataset.startBeat = String(sg.startBeat);
+          chEl.dataset.endBeat = String(sg.endBeat);
+          chEl.dataset.beats = String(sg.beats);
+          chEl.dataset.chordName = sg.chord;
+          chEl.innerHTML = `${sg.chord}<span class="ch-beats">${sg.beats}拍</span>`;
         }
         const txEl = document.createElement("div");
         txEl.className = "tx";
@@ -1315,6 +1396,7 @@ function renderSongSheet() {
         segRow.appendChild(segEl);
       });
       row.dataset.chordCount = String(Math.max(1, chordCountInLine));
+      row.dataset.totalBeats = String(item.beats || 8);
       row.appendChild(segRow);
       container.appendChild(row);
     }
@@ -1352,8 +1434,9 @@ function updateActiveLineUI() {
   lines.forEach((el, i) => {
     const active = i === currentLineIdx;
     el.classList.toggle("active", active);
+    const totalB = parseFloat(el.dataset.totalBeats || "8");
     const prog = document.getElementById(`prog-${i}`);
-    if (prog) prog.style.width = active ? `${(lineBeatProgress / 8) * 100}%` : "0%";
+    if (prog) prog.style.width = active ? `${Math.min(100, (lineBeatProgress / totalB) * 100)}%` : "0%";
   });
   const activeEl = document.getElementById(`line-${currentLineIdx}`);
   if (activeEl) {
@@ -1366,11 +1449,22 @@ function updateActiveLineUI() {
     });
     document.querySelectorAll(".ch.pulse").forEach(el => el.classList.remove("pulse"));
     if (isPlaying) {
-      const chordCount = parseInt(activeEl.dataset.chordCount || "4", 10);
-      const beatsPerChord = 8 / chordCount;
-      const activeChordIdx = Math.min(chordCount - 1, Math.floor(lineBeatProgress / beatsPerChord));
-      const chEl = activeEl.querySelector(`.ch[data-chord-idx="${activeChordIdx}"]`);
-      if (chEl) chEl.classList.add("pulse");
+      const chList = activeEl.querySelectorAll(".ch[data-chord-idx]");
+      let matchedCh = null;
+      chList.forEach(chEl => {
+        const sb = parseFloat(chEl.dataset.startBeat || "0");
+        const eb = parseFloat(chEl.dataset.endBeat || "2");
+        if (lineBeatProgress >= sb && lineBeatProgress < eb) {
+          matchedCh = chEl;
+        }
+      });
+      if (!matchedCh && chList.length > 0) matchedCh = chList[chList.length - 1];
+      if (matchedCh) {
+        matchedCh.classList.add("pulse");
+        const cName = matchedCh.dataset.chordName || "";
+        const cBeats = matchedCh.dataset.beats || "2";
+        document.getElementById("beatStatus").textContent = `当前 ${cName} (${cBeats}拍)`;
+      }
     }
   }
 }
@@ -1435,7 +1529,9 @@ function startPlayActual() {
     subTick++;
     lineBeatProgress += 0.25;
     const totalLines = document.querySelectorAll(".lyric-line").length;
-    if (lineBeatProgress >= 8) {
+    const curLineEl = document.getElementById(`line-${currentLineIdx}`);
+    const curLineTotalBeats = parseFloat(curLineEl?.dataset.totalBeats || "8");
+    if (lineBeatProgress >= curLineTotalBeats) {
       lineBeatProgress = 0;
       const curSec = document.getElementById(`line-${currentLineIdx}`)?.dataset.section;
       if (currentLineIdx + 1 < totalLines) {
@@ -1608,7 +1704,131 @@ function saveNewSong() {
   openSong(newSong.id);
 }
 
+
+function toBase64Url(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function fromBase64Url(b64url) {
+  let b64 = b64url.replace(/-/g, "+").replace(/_/g, "/");
+  while (b64.length % 4) b64 += "=";
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function openSyncModal() {
+  const s = currentSong || songs[0];
+  document.getElementById("shareSongDesc").textContent =
+    `当前歌曲：《${s.title}》（${s.artist} · ${selectedPlayKey}调），复制专属链接发给朋友，点开即可自动入库。`;
+  document.getElementById("syncModal").classList.add("open");
+}
+
+function getCurrentSongShareUrl() {
+  const s = JSON.parse(JSON.stringify(currentSong || songs[0]));
+  s.baseKey = selectedPlayKey || s.baseKey;
+  s.defaultCapo = selectedCapo;
+  const payload = toBase64Url(JSON.stringify(s));
+  const baseUrl = window.location.origin && window.location.origin !== "null"
+    ? (window.location.origin + window.location.pathname)
+    : "https://jimmybrst.github.io/";
+  return `${baseUrl}#song=${payload}`;
+}
+
+function copyCurrentSongShareUrl() {
+  const url = getCurrentSongShareUrl();
+  document.getElementById("syncDataInput").value = url;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).catch(()=>{});
+  }
+  showToast("🔗 已复制单曲分享链接，可直接发给朋友！");
+}
+
+function exportLibraryCode() {
+  const data = JSON.stringify(songs, null, 2);
+  document.getElementById("syncDataInput").value = data;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(data).catch(()=>{});
+  }
+  showToast(`📦 已复制全部 ${songs.length} 首曲库备份码！`);
+}
+
+function downloadLibraryJson() {
+  const data = JSON.stringify(songs, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "小曲库备份.json";
+  a.click();
+  showToast("💾 已下载 小曲库备份.json");
+}
+
+function importLibraryCode() {
+  const raw = (document.getElementById("syncDataInput").value || "").trim();
+  if (!raw) {
+    showToast("⚠️ 请先在输入框粘贴备份码或分享链接");
+    return;
+  }
+  try {
+    if (raw.includes("#song=")) {
+      const token = raw.split("#song=")[1].split("&")[0].trim();
+      const songObj = JSON.parse(fromBase64Url(token));
+      mergeSongIntoLibrary(songObj);
+      closeModals();
+      openSong(songObj.id);
+      showToast(`✅ 已成功导入《${songObj.title}》！`);
+      return;
+    }
+    const parsed = JSON.parse(raw);
+    const arr = Array.isArray(parsed) ? parsed : [parsed];
+    let addedCount = 0;
+    arr.forEach(item => {
+      if (item && item.title && item.raw) {
+        mergeSongIntoLibrary(item);
+        addedCount++;
+      }
+    });
+    closeModals();
+    renderLibrary();
+    showToast(`✅ 成功同步合并 ${addedCount} 首曲谱到我的曲库！`);
+  } catch (e) {
+    showToast("⚠️ 格式无法识别，请粘贴完整的备份码或分享链接");
+  }
+}
+
+function mergeSongIntoLibrary(songObj) {
+  if (!songObj.id) songObj.id = "song-" + Date.now();
+  const idx = songs.findIndex(x => x.id === songObj.id);
+  if (idx >= 0) songs[idx] = songObj;
+  else songs.unshift(songObj);
+  if (!BUILTIN_CATALOG.some(x => x.id === songObj.id)) {
+    BUILTIN_CATALOG.unshift(songObj);
+  }
+  localStorage.setItem("custom_songbook_v3", JSON.stringify(songs));
+}
+
+function checkUrlShareImport() {
+  const hash = window.location.hash || "";
+  if (hash.startsWith("#song=")) {
+    try {
+      const token = hash.slice(6).split("&")[0];
+      const songObj = JSON.parse(fromBase64Url(token));
+      if (songObj && songObj.title && songObj.raw) {
+        mergeSongIntoLibrary(songObj);
+        history.replaceState(null, "", window.location.pathname);
+        openSong(songObj.id);
+        showToast(`🍒 已自动导入分享曲谱《${songObj.title}》`);
+      }
+    } catch(e){}
+  }
+}
+
 renderLibrary();
+checkUrlShareImport();
 </script>
 </body>
 </html>
