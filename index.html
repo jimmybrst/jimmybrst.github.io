@@ -309,6 +309,44 @@ body {
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 12px; padding: 10px; text-align: center; cursor: pointer;
 }
+
+/* Key & Capo Selector Modal */
+.key-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;
+}
+.key-btn {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 9px 4px; text-align: center; cursor: pointer;
+  transition: all 0.15s;
+}
+.key-btn.active {
+  background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+}
+.key-btn-main { font-size: 15px; font-weight: 800; }
+.key-btn-sub { font-size: 10px; color: var(--text-sub); margin-top: 2px; }
+.key-btn.active .key-btn-sub { color: var(--accent); }
+
+.capo-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px;
+}
+.capo-btn {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 8px 4px; text-align: center;
+  font-size: 12.5px; font-weight: 700; cursor: pointer;
+}
+.capo-btn.active {
+  background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+}
+.pitch-summary {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 12px; font-size: 12.5px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.play-btn.counting {
+  background: #E07A5F;
+}
+
 </style>
 </head>
 <body>
@@ -320,7 +358,7 @@ body {
     <div class="avatar-box" title="专属像素头像"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges" class="pixel-svg"><rect x="0" y="0" width="8" height="1" fill="#f4d6de"/><rect x="8" y="0" width="16" height="1" fill="#fcecf0"/><rect x="24" y="0" width="8" height="1" fill="#f4d6de"/><rect x="0" y="1" width="1" height="1" fill="#f4d6de"/><rect x="1" y="1" width="6" height="1" fill="#fcecf0"/><rect x="7" y="1" width="1" height="1" fill="#f4d6de"/><rect x="8" y="1" width="16" height="1" fill="#fcecf0"/><rect x="24" y="1" width="1" height="1" fill="#f4d6de"/><rect x="25" y="1" width="6" height="1" fill="#fcecf0"/><rect x="31" y="1" width="1" height="1" fill="#f4d6de"/><rect x="0" y="2" width="1" height="1" fill="#f4d6de"/><rect x="1" y="2" width="2" height="1" fill="#fcecf0"/><rect x="3" y="2" width="2" height="1" fill="#ffa6ba"/><rect x="5" y="2" width="2" height="1" fill="#fcecf0"/><rect x="7" y="2" width="1" height="1" fill="#f4d6de"/><rect x="8" y="2" width="3" height="1" fill="#fcecf0"/><rect x="11" y="2" width="4" height="1" fill="#1c171a"/><rect x="15" y="2" width="2" height="1" fill="#fcecf0"/><rect x="17" y="2" width="4" height="1" fill="#1c171a"/><rect x="21" y="2" width="3" height="1" fill="#fcecf0"/><rect x="24" y="2" width="1" height="1" fill="#f4d6de"/><rect x="25" y="2" width="2" height="1" fill="#fcecf0"/><rect x="27" y="2" width="2" height="1" fill="#ffa6ba"/><rect x="29" y="2" width="2" height="1" fill="#fcecf0"/><rect x="31" y="2" width="1" height="1" fill="#f4d6de"/><rect x="0" y="3" width="1" height="1" fill="#f4d6de"/><rect x="1" y="3" width="2" height="1" fill="#fcecf0"/><rect x="3" y="3" width="2" height="1" fill="#ffa6ba"/><rect x="5" y="3" width="2" height="1" fill="#fcecf0"/><rect x="7" y="3" width="1" height="1" fill="#f4d6de"/><rect x="8" y="3" width="1" height="1" fill="#fcecf0"/><rect x="9" y="3" width="2" height="1" fill="#1c171a"/><rect x="11" y="3" width="4" height="1" fill="#342b30"/><rect x="15" y="3" width="2" height="1" fill="#1c171a"/><rect x="17" y="3" width="4" height="1" fill="#342b30"/><rect x="21" y="3" width="2" height="1" fill="#1c171a"/><rect x="23" y="3" width="1" height="1" fill="#fcecf0"/><rect x="24" y="3" width="1" height="1" fill="#f4d6de"/><rect x="25" y="3" width="2" height="1" fill="#fcecf0"/><rect x="27" y="3" width="2" height="1" fill="#ffa6ba"/><rect x="29" y="3" width="2" height="1" fill="#fcecf0"/><rect x="31" y="3" width="1" height="1" fill="#f4d6de"/><rect x="0" y="4" width="1" height="1" fill="#f4d6de"/><rect x="1" y="4" width="6" height="1" fill="#fcecf0"/><rect x="7" y="4" width="1" height="1" fill="#f4d6de"/><rect x="8" y="4" width="1" height="1" fill="#1c171a"/><rect x="9" y="4" width="14" height="1" fill="#342b30"/><rect x="23" y="4" width="1" height="1" fill="#1c171a"/><rect x="24" y="4" width="1" height="1" fill="#f4d6de"/><rect x="25" y="4" width="6" height="1" fill="#fcecf0"/><rect x="31" y="4" width="1" height="1" fill="#f4d6de"/><rect x="0" y="5" width="8" height="1" fill="#f4d6de"/><rect x="8" y="5" width="16" height="1" fill="#1c171a"/><rect x="24" y="5" width="8" height="1" fill="#f4d6de"/><rect x="0" y="6" width="7" height="1" fill="#fcecf0"/><rect x="7" y="6" width="18" height="1" fill="#1c171a"/><rect x="25" y="6" width="7" height="1" fill="#fcecf0"/><rect x="0" y="7" width="6" height="1" fill="#fcecf0"/><rect x="6" y="7" width="7" height="1" fill="#1c171a"/><rect x="13" y="7" width="2" height="1" fill="#fff1e6"/><rect x="15" y="7" width="2" height="1" fill="#fcecf0"/><rect x="17" y="7" width="2" height="1" fill="#fff1e6"/><rect x="19" y="7" width="7" height="1" fill="#1c171a"/><rect x="26" y="7" width="6" height="1" fill="#fcecf0"/><rect x="0" y="8" width="6" height="1" fill="#fcecf0"/><rect x="6" y="8" width="5" height="1" fill="#1c171a"/><rect x="11" y="8" width="10" height="1" fill="#fff1e6"/><rect x="21" y="8" width="5" height="1" fill="#1c171a"/><rect x="26" y="8" width="6" height="1" fill="#fcecf0"/><rect x="0" y="9" width="5" height="1" fill="#fcecf0"/><rect x="5" y="9" width="4" height="1" fill="#1c171a"/><rect x="9" y="9" width="14" height="1" fill="#fff1e6"/><rect x="23" y="9" width="4" height="1" fill="#1c171a"/><rect x="27" y="9" width="5" height="1" fill="#fcecf0"/><rect x="0" y="10" width="5" height="1" fill="#fcecf0"/><rect x="5" y="10" width="3" height="1" fill="#1c171a"/><rect x="8" y="10" width="4" height="1" fill="#fff1e6"/><rect x="12" y="10" width="1" height="1" fill="#3a2c30"/><rect x="13" y="10" width="6" height="1" fill="#fff1e6"/><rect x="19" y="10" width="1" height="1" fill="#3a2c30"/><rect x="20" y="10" width="4" height="1" fill="#fff1e6"/><rect x="24" y="10" width="3" height="1" fill="#1c171a"/><rect x="27" y="10" width="5" height="1" fill="#fcecf0"/><rect x="0" y="11" width="5" height="1" fill="#fcecf0"/><rect x="5" y="11" width="3" height="1" fill="#1c171a"/><rect x="8" y="11" width="2" height="1" fill="#fff1e6"/><rect x="10" y="11" width="2" height="1" fill="#3a2c30"/><rect x="12" y="11" width="8" height="1" fill="#fff1e6"/><rect x="20" y="11" width="2" height="1" fill="#3a2c30"/><rect x="22" y="11" width="2" height="1" fill="#fff1e6"/><rect x="24" y="11" width="3" height="1" fill="#1c171a"/><rect x="27" y="11" width="5" height="1" fill="#fcecf0"/><rect x="0" y="12" width="4" height="1" fill="#fcecf0"/><rect x="4" y="12" width="1" height="1" fill="#100d0f"/><rect x="5" y="12" width="2" height="1" fill="#1c171a"/><rect x="7" y="12" width="4" height="1" fill="#fff1e6"/><rect x="11" y="12" width="1" height="1" fill="#201619"/><rect x="12" y="12" width="1" height="1" fill="#ffffff"/><rect x="13" y="12" width="6" height="1" fill="#fff1e6"/><rect x="19" y="12" width="1" height="1" fill="#201619"/><rect x="20" y="12" width="1" height="1" fill="#ffffff"/><rect x="21" y="12" width="4" height="1" fill="#fff1e6"/><rect x="25" y="12" width="2" height="1" fill="#1c171a"/><rect x="27" y="12" width="1" height="1" fill="#100d0f"/><rect x="28" y="12" width="4" height="1" fill="#fcecf0"/><rect x="0" y="13" width="4" height="1" fill="#fcecf0"/><rect x="4" y="13" width="1" height="1" fill="#100d0f"/><rect x="5" y="13" width="2" height="1" fill="#1c171a"/><rect x="7" y="13" width="4" height="1" fill="#fff1e6"/><rect x="11" y="13" width="2" height="1" fill="#201619"/><rect x="13" y="13" width="6" height="1" fill="#fff1e6"/><rect x="19" y="13" width="2" height="1" fill="#201619"/><rect x="21" y="13" width="4" height="1" fill="#fff1e6"/><rect x="25" y="13" width="2" height="1" fill="#1c171a"/><rect x="27" y="13" width="1" height="1" fill="#100d0f"/><rect x="28" y="13" width="4" height="1" fill="#fcecf0"/><rect x="0" y="14" width="3" height="1" fill="#fcecf0"/><rect x="3" y="14" width="2" height="1" fill="#100d0f"/><rect x="5" y="14" width="1" height="1" fill="#1c171a"/><rect x="6" y="14" width="4" height="1" fill="#fff1e6"/><rect x="10" y="14" width="2" height="1" fill="#ffa8bc"/><rect x="12" y="14" width="8" height="1" fill="#fff1e6"/><rect x="20" y="14" width="2" height="1" fill="#ffa8bc"/><rect x="22" y="14" width="4" height="1" fill="#fff1e6"/><rect x="26" y="14" width="1" height="1" fill="#1c171a"/><rect x="27" y="14" width="2" height="1" fill="#100d0f"/><rect x="29" y="14" width="3" height="1" fill="#fcecf0"/><rect x="0" y="15" width="3" height="1" fill="#fcecf0"/><rect x="3" y="15" width="2" height="1" fill="#100d0f"/><rect x="5" y="15" width="1" height="1" fill="#ffffff"/><rect x="6" y="15" width="4" height="1" fill="#fff1e6"/><rect x="10" y="15" width="3" height="1" fill="#ffa8bc"/><rect x="13" y="15" width="6" height="1" fill="#fff1e6"/><rect x="19" y="15" width="3" height="1" fill="#ffa8bc"/><rect x="22" y="15" width="4" height="1" fill="#fff1e6"/><rect x="26" y="15" width="1" height="1" fill="#ffffff"/><rect x="27" y="15" width="2" height="1" fill="#100d0f"/><rect x="29" y="15" width="3" height="1" fill="#fcecf0"/><rect x="0" y="16" width="3" height="1" fill="#fcecf0"/><rect x="3" y="16" width="2" height="1" fill="#100d0f"/><rect x="5" y="16" width="1" height="1" fill="#ffffff"/><rect x="6" y="16" width="1" height="1" fill="#fff1e6"/><rect x="7" y="16" width="1" height="1" fill="#1c171a"/><rect x="8" y="16" width="7" height="1" fill="#fff1e6"/><rect x="15" y="16" width="2" height="1" fill="#e25f76"/><rect x="17" y="16" width="7" height="1" fill="#fff1e6"/><rect x="24" y="16" width="1" height="1" fill="#1c171a"/><rect x="25" y="16" width="1" height="1" fill="#fff1e6"/><rect x="26" y="16" width="1" height="1" fill="#ffffff"/><rect x="27" y="16" width="2" height="1" fill="#100d0f"/><rect x="29" y="16" width="3" height="1" fill="#fcecf0"/><rect x="0" y="17" width="4" height="1" fill="#fcecf0"/><rect x="4" y="17" width="2" height="1" fill="#100d0f"/><rect x="6" y="17" width="1" height="1" fill="#f5dbc8"/><rect x="7" y="17" width="1" height="1" fill="#1c171a"/><rect x="8" y="17" width="7" height="1" fill="#fff1e6"/><rect x="15" y="17" width="2" height="1" fill="#e25f76"/><rect x="17" y="17" width="7" height="1" fill="#fff1e6"/><rect x="24" y="17" width="1" height="1" fill="#1c171a"/><rect x="25" y="17" width="1" height="1" fill="#f5dbc8"/><rect x="26" y="17" width="2" height="1" fill="#100d0f"/><rect x="28" y="17" width="4" height="1" fill="#fcecf0"/><rect x="0" y="18" width="5" height="1" fill="#fcecf0"/><rect x="5" y="18" width="2" height="1" fill="#100d0f"/><rect x="7" y="18" width="1" height="1" fill="#1c171a"/><rect x="8" y="18" width="2" height="1" fill="#f5dbc8"/><rect x="10" y="18" width="12" height="1" fill="#fff1e6"/><rect x="22" y="18" width="2" height="1" fill="#f5dbc8"/><rect x="24" y="18" width="1" height="1" fill="#1c171a"/><rect x="25" y="18" width="2" height="1" fill="#100d0f"/><rect x="27" y="18" width="5" height="1" fill="#fcecf0"/><rect x="0" y="19" width="6" height="1" fill="#fcecf0"/><rect x="6" y="19" width="1" height="1" fill="#100d0f"/><rect x="7" y="19" width="1" height="1" fill="#1c171a"/><rect x="8" y="19" width="1" height="1" fill="#fcecf0"/><rect x="9" y="19" width="2" height="1" fill="#f5dbc8"/><rect x="11" y="19" width="10" height="1" fill="#fff1e6"/><rect x="21" y="19" width="2" height="1" fill="#f5dbc8"/><rect x="23" y="19" width="1" height="1" fill="#fcecf0"/><rect x="24" y="19" width="1" height="1" fill="#1c171a"/><rect x="25" y="19" width="1" height="1" fill="#100d0f"/><rect x="26" y="19" width="6" height="1" fill="#fcecf0"/><rect x="0" y="20" width="7" height="1" fill="#fcecf0"/><rect x="7" y="20" width="1" height="1" fill="#1c171a"/><rect x="8" y="20" width="3" height="1" fill="#fcecf0"/><rect x="11" y="20" width="4" height="1" fill="#f5dbc8"/><rect x="15" y="20" width="2" height="1" fill="#fff1e6"/><rect x="17" y="20" width="4" height="1" fill="#f5dbc8"/><rect x="21" y="20" width="3" height="1" fill="#fcecf0"/><rect x="24" y="20" width="1" height="1" fill="#1c171a"/><rect x="25" y="20" width="7" height="1" fill="#fcecf0"/><rect x="0" y="21" width="7" height="1" fill="#fcecf0"/><rect x="7" y="21" width="1" height="1" fill="#1c171a"/><rect x="8" y="21" width="2" height="1" fill="#fcecf0"/><rect x="10" y="21" width="2" height="1" fill="#ddd0c3"/><rect x="12" y="21" width="8" height="1" fill="#f5dbc8"/><rect x="20" y="21" width="2" height="1" fill="#ddd0c3"/><rect x="22" y="21" width="2" height="1" fill="#fcecf0"/><rect x="24" y="21" width="1" height="1" fill="#1c171a"/><rect x="25" y="21" width="7" height="1" fill="#fcecf0"/><rect x="0" y="22" width="6" height="1" fill="#fcecf0"/><rect x="6" y="22" width="1" height="1" fill="#1c171a"/><rect x="7" y="22" width="2" height="1" fill="#fcecf0"/><rect x="9" y="22" width="3" height="1" fill="#ddd0c3"/><rect x="12" y="22" width="8" height="1" fill="#efe6dd"/><rect x="20" y="22" width="3" height="1" fill="#ddd0c3"/><rect x="23" y="22" width="2" height="1" fill="#fcecf0"/><rect x="25" y="22" width="1" height="1" fill="#1c171a"/><rect x="26" y="22" width="6" height="1" fill="#fcecf0"/><rect x="0" y="23" width="5" height="1" fill="#fcecf0"/><rect x="5" y="23" width="1" height="1" fill="#1c171a"/><rect x="6" y="23" width="2" height="1" fill="#fcecf0"/><rect x="8" y="23" width="2" height="1" fill="#ddd0c3"/><rect x="10" y="23" width="12" height="1" fill="#efe6dd"/><rect x="22" y="23" width="2" height="1" fill="#ddd0c3"/><rect x="24" y="23" width="2" height="1" fill="#fcecf0"/><rect x="26" y="23" width="1" height="1" fill="#1c171a"/><rect x="27" y="23" width="5" height="1" fill="#fcecf0"/><rect x="0" y="24" width="5" height="1" fill="#fcecf0"/><rect x="5" y="24" width="1" height="1" fill="#1c171a"/><rect x="6" y="24" width="1" height="1" fill="#fcecf0"/><rect x="7" y="24" width="1" height="1" fill="#ddd0c3"/><rect x="8" y="24" width="7" height="1" fill="#efe6dd"/><rect x="15" y="24" width="1" height="1" fill="#4c9a72"/><rect x="16" y="24" width="8" height="1" fill="#efe6dd"/><rect x="24" y="24" width="1" height="1" fill="#ddd0c3"/><rect x="25" y="24" width="1" height="1" fill="#fcecf0"/><rect x="26" y="24" width="1" height="1" fill="#1c171a"/><rect x="27" y="24" width="5" height="1" fill="#fcecf0"/><rect x="0" y="25" width="4" height="1" fill="#fcecf0"/><rect x="4" y="25" width="1" height="1" fill="#1c171a"/><rect x="5" y="25" width="2" height="1" fill="#fcecf0"/><rect x="7" y="25" width="1" height="1" fill="#ddd0c3"/><rect x="8" y="25" width="7" height="1" fill="#efe6dd"/><rect x="15" y="25" width="1" height="1" fill="#e63946"/><rect x="16" y="25" width="8" height="1" fill="#efe6dd"/><rect x="24" y="25" width="1" height="1" fill="#ddd0c3"/><rect x="25" y="25" width="2" height="1" fill="#fcecf0"/><rect x="27" y="25" width="1" height="1" fill="#1c171a"/><rect x="28" y="25" width="4" height="1" fill="#fcecf0"/><rect x="0" y="26" width="6" height="1" fill="#fcecf0"/><rect x="6" y="26" width="1" height="1" fill="#ddd0c3"/><rect x="7" y="26" width="7" height="1" fill="#efe6dd"/><rect x="14" y="26" width="3" height="1" fill="#cc9e7a"/><rect x="17" y="26" width="8" height="1" fill="#efe6dd"/><rect x="25" y="26" width="1" height="1" fill="#ddd0c3"/><rect x="26" y="26" width="6" height="1" fill="#fcecf0"/><rect x="0" y="27" width="5" height="1" fill="#fcecf0"/><rect x="5" y="27" width="1" height="1" fill="#ddd0c3"/><rect x="6" y="27" width="7" height="1" fill="#efe6dd"/><rect x="13" y="27" width="1" height="1" fill="#b0805c"/><rect x="14" y="27" width="3" height="1" fill="#cc9e7a"/><rect x="17" y="27" width="1" height="1" fill="#b0805c"/><rect x="18" y="27" width="8" height="1" fill="#efe6dd"/><rect x="26" y="27" width="1" height="1" fill="#ddd0c3"/><rect x="27" y="27" width="5" height="1" fill="#fcecf0"/><rect x="0" y="28" width="5" height="1" fill="#fcecf0"/><rect x="5" y="28" width="1" height="1" fill="#ddd0c3"/><rect x="6" y="28" width="8" height="1" fill="#efe6dd"/><rect x="14" y="28" width="1" height="1" fill="#cc9e7a"/><rect x="15" y="28" width="1" height="1" fill="#689cda"/><rect x="16" y="28" width="1" height="1" fill="#cc9e7a"/><rect x="17" y="28" width="9" height="1" fill="#efe6dd"/><rect x="26" y="28" width="1" height="1" fill="#ddd0c3"/><rect x="27" y="28" width="5" height="1" fill="#fcecf0"/><rect x="0" y="29" width="4" height="1" fill="#fcecf0"/><rect x="4" y="29" width="1" height="1" fill="#ddd0c3"/><rect x="5" y="29" width="9" height="1" fill="#efe6dd"/><rect x="14" y="29" width="1" height="1" fill="#e63946"/><rect x="15" y="29" width="1" height="1" fill="#efe6dd"/><rect x="16" y="29" width="1" height="1" fill="#e63946"/><rect x="17" y="29" width="10" height="1" fill="#efe6dd"/><rect x="27" y="29" width="1" height="1" fill="#ddd0c3"/><rect x="28" y="29" width="4" height="1" fill="#fcecf0"/><rect x="0" y="30" width="4" height="1" fill="#fcecf0"/><rect x="4" y="30" width="1" height="1" fill="#ddd0c3"/><rect x="5" y="30" width="22" height="1" fill="#efe6dd"/><rect x="27" y="30" width="1" height="1" fill="#ddd0c3"/><rect x="28" y="30" width="4" height="1" fill="#fcecf0"/><rect x="0" y="31" width="4" height="1" fill="#fcecf0"/><rect x="4" y="31" width="24" height="1" fill="#ddd0c3"/><rect x="28" y="31" width="4" height="1" fill="#fcecf0"/></svg></div>
     <div>
       <div class="brand-title">小曲库 🍒</div>
-      <div class="brand-sub">每一首歌都陪你慢慢弹 · 点和弦可听音</div>
+      <div class="brand-sub">每一首歌都陪你慢慢弹 · 随拍跟唱</div>
     </div>
   </div>
   <div class="header-actions">
@@ -332,15 +370,15 @@ body {
 <!-- VIEW 1: SONG LIBRARY & ONE-CLICK SEARCH-TO-ADD -->
 <main id="libraryView" class="view active">
   <div class="search-row">
-    <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入歌名(如：程艾影、成都、虚拟)搜谱..." oninput="renderLibrary()">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜歌手或歌名(如：赵雷、任素汐、程艾影、胡广生)..." oninput="renderLibrary()">
     <button class="btn-primary" onclick="triggerSearchFocus()">搜索曲库</button>
     <button class="btn-secondary" onclick="openAddModal()">＋贴谱</button>
   </div>
   <div class="filter-pills" id="filterPills">
     <span class="pill active" onclick="setFilter('all')">全部</span>
     <span class="pill" onclick="setFilter('赵雷')">赵雷</span>
+    <span class="pill" onclick="setFilter('任素汐')">任素汐</span>
     <span class="pill" onclick="setFilter('陈粒')">陈粒</span>
-    <span class="pill" onclick="openChordModal()">🎸 和弦指法试听</span>
   </div>
 
   <!-- Search Results from Cloud/Built-in Catalog to Add to Library -->
@@ -367,25 +405,25 @@ body {
       <div class="song-head-title" id="stTitle">程艾影</div>
       <div class="song-head-artist" id="stArtist">赵雷 · 4/4拍</div>
     </div>
-    <button class="back-btn" onclick="openChordModal()">🎸 指法</button>
+    <button class="back-btn" onclick="openKeyModal()">🎚️ 选调</button>
   </div>
 
   <div class="control-strip">
-    <div class="ctrl-item" onclick="transposeKey()">
-      <div class="ctrl-val" id="ctrlKey">G调 <span>›</span></div>
-      <div class="ctrl-lbl" id="ctrlCapo">不夹 (点此变调)</div>
+    <div class="ctrl-item" onclick="openKeyModal()">
+      <div class="ctrl-val" id="ctrlKey">G调 <span>▾</span></div>
+      <div class="ctrl-lbl">点此直接选调</div>
+    </div>
+    <div class="ctrl-item" onclick="openKeyModal()">
+      <div class="ctrl-val" id="ctrlCapo">不夹 <span>▾</span></div>
+      <div class="ctrl-lbl" id="ctrlPitch">原调演唱</div>
     </div>
     <div class="ctrl-item" onclick="changeBpm(-5)">
       <div class="ctrl-val" id="ctrlBpm">70 <span>BPM</span></div>
-      <div class="ctrl-lbl">拍速 (-5)</div>
+      <div class="ctrl-lbl">拍速 -5</div>
     </div>
     <div class="ctrl-item" onclick="changeBpm(5)">
-      <div class="ctrl-val" id="ctrlPlayable">100% <span>›</span></div>
-      <div class="ctrl-lbl">可弹 (拍速+5)</div>
-    </div>
-    <div class="ctrl-item" onclick="strumCurrentFirstChord()">
-      <div class="ctrl-val">🔊 <span>定音</span></div>
-      <div class="ctrl-lbl">起唱和弦音</div>
+      <div class="ctrl-val" id="ctrlPlayable">100% <span>＋5</span></div>
+      <div class="ctrl-lbl">可弹度 / 加速</div>
     </div>
   </div>
 
@@ -447,45 +485,50 @@ body {
   </div>
 </div>
 
-<!-- CHORD DIAGRAM & STRUM MODAL -->
-<div class="modal-mask" id="chordModal">
+<!-- YOOPU-STYLE KEY & CAPO MODAL -->
+<div class="modal-mask" id="keyModal" onclick="if(event.target===this)closeModals()">
   <div class="modal-sheet">
     <div class="modal-title">
-      <span>🎸 常用和弦指法 & 点击听真吉他扫弦</span>
-      <span style="cursor:pointer" onclick="closeModals()">✕</span>
+      <span>🎚️ 选调指法 & 变调夹（直接点选，不用循环按）</span>
+      <span style="cursor:pointer;padding:2px 6px;" onclick="closeModals()">✕</span>
     </div>
-    <div class="chord-grid" id="chordGrid"></div>
+    <div class="pitch-summary">
+      <div>
+        <div style="font-weight:800;color:var(--text);" id="modalPitchSummary">当前：G调指法 · 变调夹不夹</div>
+        <div style="font-size:11px;color:var(--text-sub);margin-top:2px;" id="modalPitchDetail">实际演唱音高：G调 · 推荐好按指法已标绿</div>
+      </div>
+      <button class="btn-secondary" style="padding:6px 10px;font-size:11.5px;" onclick="resetKeyAndCapo()">恢复默认</button>
+    </div>
+    <div class="form-lbl">1. 选择左手和弦指法（选调）</div>
+    <div class="key-grid" id="keyGrid"></div>
+    <div class="form-lbl">2. 选择变调夹位置（Capo 品位）</div>
+    <div class="capo-grid" id="capoGrid"></div>
+    <button class="btn-primary" style="width:100%;padding:11px;margin-top:4px;" onclick="closeModals()">完成设置</button>
   </div>
 </div>
 
 <script>
-const NOTES = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-const CHORD_FREQS = {
-  "G": [98.0, 123.47, 146.83, 196.0, 246.94, 392.0],
-  "D": [146.83, 220.0, 293.66, 369.99],
-  "Em": [82.41, 123.47, 164.81, 196.0, 246.94, 329.63],
-  "Em7": [82.41, 123.47, 146.83, 196.0, 246.94, 329.63],
-  "C": [130.81, 164.81, 196.0, 261.63, 329.63],
-  "Am7": [110.0, 164.81, 196.0, 261.63, 329.63],
-  "Am": [110.0, 164.81, 220.0, 261.63, 329.63],
-  "Fmaj7": [130.81, 174.61, 220.0, 261.63, 329.63],
-  "F": [87.31, 130.81, 174.61, 220.0, 261.63, 349.23],
-  "Dm7": [146.83, 220.0, 261.63, 349.23],
-  "Cmaj7": [130.81, 164.81, 196.0, 246.94, 329.63],
-  "Bm": [123.47, 185.0, 246.94, 293.66, 369.99]
+const NOTES = ["C","C#","D","Eb","E","F","F#","G","Ab","A","Bb","B"];
+const NOTE_ALIASES = {
+  "C":0, "C#":1, "Db":1, "D":2, "D#":3, "Eb":3, "E":4, "F":5,
+  "F#":6, "Gb":6, "G":7, "G#":8, "Ab":8, "A":9, "A#":10, "Bb":10, "B":11
 };
-const CHORD_FINGERS = {
-  "G": "6弦3品 · 5弦2品 · 1弦3品",
-  "D": "3弦2品 · 1弦2品 · 2弦3品",
-  "Em": "5弦2品 · 4弦2品（超简单）",
-  "C": "5弦3品 · 4弦2品 · 2弦1品",
-  "Am7": "4弦2品 · 2弦1品",
-  "Fmaj7": "4弦3品 · 3弦2品 · 2弦1品（免横按）",
-  "Dm7": "3弦2品 · 1/2弦1品小横按",
-  "Cmaj7": "5弦3品 · 4弦2品（免按2弦）"
+const PLAYABILITY_BY_KEY = {
+  "G": "100% 极简",
+  "C": "98% 极简",
+  "D": "90% 常用",
+  "A": "85% 常用",
+  "E": "82% 常用",
+  "F": "75% 含横按",
+  "B": "60% 进阶",
+  "C#": "55% 变调夹推荐",
+  "Eb": "55% 变调夹推荐",
+  "F#": "55% 变调夹推荐",
+  "Ab": "55% 变调夹推荐",
+  "Bb": "60% 变调夹推荐"
 };
 
-// Built-in searchable Yoopu / Folk Guitar Catalog (can search and 1-click add to library!)
+// Built-in searchable Yoopu / Folk Guitar Catalog (赵雷 + 任素汐 + 陈粒)
 const BUILTIN_CATALOG = [
   {
     id: "cheng-ai-ying-g",
@@ -493,7 +536,8 @@ const BUILTIN_CATALOG = [
     versionTag: "G调不夹 · 朋友视频同款",
     artist: "赵雷",
     baseKey: "G",
-    capo: "不夹 (原唱C调)",
+    defaultCapo: 0,
+    origKey: "C",
     bpm: 70,
     playable: "100%",
     raw: `#主歌 1
@@ -526,7 +570,8 @@ const BUILTIN_CATALOG = [
     versionTag: "C调夹2品 · 有谱么原版",
     artist: "赵雷",
     baseKey: "C",
-    capo: "夹2品 (原调D调)",
+    defaultCapo: 2,
+    origKey: "D",
     bpm: 70,
     playable: "95%",
     raw: `#主歌 1
@@ -552,12 +597,267 @@ const BUILTIN_CATALOG = [
 这是[C]一条必经[G]的路 没有[Fmaj7]指引出口的[C]光。`
   },
   {
+    id: "cheng-du",
+    title: "成都",
+    versionTag: "C调不夹 · 经典原版",
+    artist: "赵雷",
+    baseKey: "C",
+    defaultCapo: 0,
+    origKey: "C",
+    bpm: 72,
+    playable: "100%",
+    raw: `#主歌 1
+[C]让我掉下眼泪的 [Em]不止昨夜的酒
+[F]让我依依不舍的 [G]不止你的温柔
+[Em]余路还要走多久 [Am]你攥着我的手
+[Dm7]让我感到为难的 [G]是挣扎的自由
+#主歌 2
+[C]分别总是在九月 [Em]回忆是思念的愁
+[F]深秋嫩绿的垂柳 [G]亲吻着我额头
+[Em]在那座阴雨的小城里 [Am]我从未忘记你
+[Dm7]成都 带不走的 [G]只有[C]你
+#副歌
+[C]和我在成都的街头走一走 [Am]喔哦
+[F]直到所有的灯都熄灭了也不停[G]留
+[C]你会挽着我的衣袖 [Am]我会把手揣进裤兜
+[Dm7]走到玉林路的尽头 [G]坐在小酒馆的门[C]口`
+  },
+  {
+    id: "nan-fang-gu-niang",
+    title: "南方姑娘",
+    versionTag: "C调夹2品 · 温柔弹唱",
+    artist: "赵雷",
+    baseKey: "C",
+    defaultCapo: 2,
+    origKey: "D",
+    bpm: 68,
+    playable: "100%",
+    raw: `#主歌
+[C]北方的村庄 [G]住着一个[Am]南方的姑娘
+[F]她总是喜欢[G]穿着带花的[C]裙子站在路旁
+[C]她的话不多 [G]但笑起来是[Am]那么平静悠扬
+[F]她柔弱的眼[G]里装的是什么 [C]是思念的忧伤
+#副歌
+[C]南方的小镇 [G]阴雨的冬天[Am]没有北方冷
+[F]她不需要臃[G]肿的棉衣去[C]遮盖她似水的面容
+[C]她在来去的街[G]头留下影子[Am]芳香在回眸人的心头
+[Dm7]眨眼的时间 [G]芳香已飘散[C]影子已不见`
+  },
+  {
+    id: "wo-ji-de",
+    title: "我记得",
+    versionTag: "G调夹2品 · 催泪原版编配",
+    artist: "赵雷",
+    baseKey: "G",
+    defaultCapo: 2,
+    origKey: "A",
+    bpm: 74,
+    playable: "100%",
+    raw: `#主歌 1
+[G]我带着比身体重的行[D]囊 游入尼罗河底
+[Em]经过几道闪电 看到一[C]堆光圈 不确定是不是这里
+[G]我看到几个人站在一起 [D]他们拿着剪刀摘走我的行李
+[Em]擦拭我的脑袋 [C]没有机会返回[G]去
+#主歌 2
+[G]直到我听见一个声音 [D]我确定是你 可你怎记得我
+[Em]我带来了另界的消息 [C]可我怎么告知你
+[G]注定失忆着相[D]遇 我记得这里是片[Em]树林
+后面有个[C]山坡 山坡上的[D]枣树每当秋天就在[G]篮子里
+#副歌
+[G]快来抱抱 快来抱抱[D]我 我终于找到你
+[Em]你怎么还在原地 [C]笑容替眼泪先滑落
+[G]快来抱抱 快来抱抱[D]我 我从没忘记你
+[Em]在每一个深秋的梦[C]里 我记得[D]你眼里的依[G]恋`
+  },
+  {
+    id: "hua-zhao-lei",
+    title: "画",
+    versionTag: "G调不夹 · 轻快民谣",
+    artist: "赵雷",
+    baseKey: "G",
+    defaultCapo: 0,
+    origKey: "G",
+    bpm: 76,
+    playable: "100%",
+    raw: `#主歌 1
+[G]为寂寞的夜空画上一个月[Em]亮
+[C]把我画在那月亮下面歌[D]唱
+[G]为冷清的房子画上一扇大[Em]窗
+[C]再画上一张床 [D]—
+#主歌 2
+[G]画一个姑娘陪着[Em]我 再画个花边的被[C]窝
+画上灶[D]炉与柴火 我们[G]一起生来一起活
+#副歌
+[G]画一群鸟儿围着[Em]我 再画上绿岭和青[C]坡
+画上宁[D]静与祥和 雨点[G]儿在稻田上飘落
+[G]画上有你能用手触到的彩[Em]虹
+[C]画中有我决定不灭的星[D]空
+[G]画上弯曲无尽平坦的小[Em]路
+[C]尽头的人家 [D]梦已入[G]眠`
+  },
+  {
+    id: "gu-lou",
+    title: "鼓楼",
+    versionTag: "G调夹3品 · 扫弦弹唱",
+    artist: "赵雷",
+    baseKey: "G",
+    defaultCapo: 3,
+    origKey: "Bb",
+    bpm: 82,
+    playable: "100%",
+    raw: `#主歌 1
+[G]暮色苍茫看[D]劲松 乱云飞渡仍[Em]从容
+天生一个仙[C]人洞 无限风光在[D]险峰
+[G]我站在鼓楼上面 [D]一切繁华与我无关
+[Em]这是个拥挤的地方 [C]而我却很平[G]凡
+#副歌
+[G]我是个沉默不语的靠着[D]墙壁晒太阳的过客
+[Em]如果我有些倦意了 就[C]让我在这里独自醒过
+[G]我站在鼓楼上面 [D]听着107路再次经过
+[Em]时间是让人猝不及防的[C]东西 晴时有[D]风阴有时[G]雨`
+  },
+  {
+    id: "san-shi-sui-de-nv-ren",
+    title: "三十岁的女人",
+    versionTag: "G调夹2品 · 温柔分解",
+    artist: "赵雷",
+    baseKey: "G",
+    defaultCapo: 2,
+    origKey: "A",
+    bpm: 68,
+    playable: "100%",
+    raw: `#主歌
+[G]她是个三十岁 [Bm]至今还没有结婚的女人
+[C]她笑脸中眼旁 [D]已有几道波纹
+[G]三十岁了光芒 [Bm]和激情已被岁月打磨
+[C]是不是一个人的生活 [D]比两个人更快[G]乐
+#副歌
+[C]我是多么的想念你 [D]走在深夜的露台里
+[Bm]时光匆匆又是一年 [Em]灿烂的笑容在哪[C]里
+可是女人[D]啊 你不该总是独[G]守着夜晚`
+  },
+  {
+    id: "shao-nian-jin-shi",
+    title: "少年锦时",
+    versionTag: "C调夹2品 · 清新指弹风",
+    artist: "赵雷",
+    baseKey: "C",
+    defaultCapo: 2,
+    origKey: "D",
+    bpm: 72,
+    playable: "98%",
+    raw: `#主歌
+[C]又回到春末的五月 [G]凌晨的集市人不多
+[Am]小孩在门前唱着歌 [F]阳光它照暖了西[G]河
+[C]柳絮乘着大风吹 [G]树影下的人想睡
+[Am]沉默的人从此刻开始[F]快乐起来 脱掉[G]寒冬的傀[C]儡
+#副歌
+[F]我忧郁的白衬衫 [G]青春口袋里面的第一支香烟
+[Em]情窦初开的我 [Am]从不敢和你说
+[Dm7]仅有辆进城的公车 [G]还没有咖啡馆和奢侈品商店
+[F]晴朗蓝天下昂头的笑脸 [G]爱很简单[C]—`
+  },
+  {
+    id: "hu-guang-sheng",
+    title: "胡广生",
+    versionTag: "C调不夹 ·《无名之辈》原声",
+    artist: "任素汐",
+    baseKey: "C",
+    defaultCapo: 0,
+    origKey: "C",
+    bpm: 66,
+    playable: "100%",
+    raw: `#主歌 1
+[C]一个乌梅子 [G]两个胡广生
+[Am]三个排排坐 [Em]四个在发呆
+[F]五个看着天 [C]六个在叹气
+[Dm7]七个八个想回[G]家
+[C]今夜吹的风 [G]何时能停下
+[Am]桥上的那个人 [Em]你要去哪里
+[F]走过石板路 [C]迈过烂泥巴
+[Dm7]搭把手 陪我走一[G]程
+#副歌
+[C]在下个路口 [G]等我一下吧
+[Am]哪怕只有短短[Em]一分钟的话
+[F]你不要害怕 [C]也不要说话
+[Dm7]天亮前 抱紧我一[G]下
+[C]在下个路口 [G]带我回家吧
+[Am]桥上亮起万家[Em]温暖的灯火
+[F]风吹过你的头发 [G]别回头走[C]吧`
+  },
+  {
+    id: "wo-yao-ni",
+    title: "我要你",
+    versionTag: "G调夹2品 ·《驴得水》弹唱版",
+    artist: "任素汐",
+    baseKey: "G",
+    defaultCapo: 2,
+    origKey: "A",
+    bpm: 72,
+    playable: "100%",
+    raw: `#主歌 1
+[G]我要 美丽的衣[Bm]裳 为你对镜贴花[Em]黄
+我要 [C]唱着歌 [D]默默把你想[G]念
+[G]我要 弯弯的月[Bm]亮 照亮天上的流[Em]浪
+我要 [C]美丽的衣裳 [D]为你敞开胸[G]膛
+#副歌
+[C]这夜色太紧张 [D]时间太漫长
+[Bm]我的情郎 [Em]我在他乡
+[Am7]望着月亮 [D]思念的泪水[G]轻轻流淌
+[C]都怪这夜色 [D]撩人的疯狂
+[Bm]都怪这吉他 [Em]弹得太凄凉
+[Am7]欧 我要唱着歌 [D]默默把你想[G]念`
+  },
+  {
+    id: "wang-zhao-jun",
+    title: "王招君",
+    versionTag: "C调夹3品 · 叙事温情版",
+    artist: "任素汐",
+    baseKey: "C",
+    defaultCapo: 3,
+    origKey: "Eb",
+    bpm: 68,
+    playable: "98%",
+    raw: `#主歌
+[C]威海卫的冬天 [G]海风吹得脸生疼
+[Am]你把我的冰手 [Em]揣进你的棉袄里
+[F]你说等开春了 [C]带我去坐大轮船
+[Dm7]去看看海那边的天[G]空
+#副歌
+[C]你走后的岁月 [G]院子里的花又开
+[Am]收音机里依然 [Em]放着老掉牙的歌
+[F]招君啊招君 [C]梦里再喊我一声
+[Dm7]我还做你那个听话[G]的小孩[C]子`
+  },
+  {
+    id: "sui-yue-shen-tou-ren",
+    title: "给妈妈的歌 (岁月的船)",
+    versionTag: "G调不夹 · 温暖民谣",
+    artist: "任素汐",
+    baseKey: "G",
+    defaultCapo: 0,
+    origKey: "G",
+    bpm: 68,
+    playable: "100%",
+    raw: `#主歌
+[G]小院里的槐花 [D]落了一地白
+[Em]厨房里的热气 [C]模糊了窗台
+[G]你说外面风大 [D]累了就回来
+[C]热汤一直温在 [D]炉火[G]旁
+#副歌
+[G]岁月慢慢走啊 [D]别催她变老
+[Em]让我再靠一靠 [C]你温暖的怀抱
+[G]走遍万水千山 [D]最安心的地方
+[C]是推开门喊一[D]声妈[G]妈`
+  },
+  {
     id: "jue-dui-zhan-you",
     title: "绝对占有相对自由",
     versionTag: "C调夹2品 · 有谱么原版",
     artist: "陈粒",
     baseKey: "C",
-    capo: "夹2品 (D调演唱)",
+    defaultCapo: 2,
+    origKey: "D",
     bpm: 70,
     playable: "92%",
     raw: `#前奏
@@ -591,7 +891,8 @@ const BUILTIN_CATALOG = [
     versionTag: "G调夹2品 · 经典弹唱",
     artist: "陈粒",
     baseKey: "G",
-    capo: "夹2品",
+    defaultCapo: 2,
+    origKey: "A",
     bpm: 74,
     playable: "100%",
     raw: `#主歌 1
@@ -606,52 +907,13 @@ const BUILTIN_CATALOG = [
 [Em]明白什么才让我骄傲 [C]不明白你`
   },
   {
-    id: "cheng-du",
-    title: "成都",
-    versionTag: "C调不夹 · 入门必弹",
-    artist: "赵雷",
-    baseKey: "C",
-    capo: "不夹 (原调C调)",
-    bpm: 72,
-    playable: "100%",
-    raw: `#主歌 1
-[C]让我掉下眼泪的 [Em]不止昨夜的酒
-[F]让我依依不舍的 [G]不止你的温柔
-[Em]余路还要走多久 [Am]你攥着我的手
-[Dm7]让我感到为难的 [G]是挣扎的自由
-#副歌
-[C]和我在成都的街头走一走 [Am]喔哦
-[F]直到所有的灯都熄灭了也不停[G]留
-[C]你会挽着我的衣袖 [Am]我会把手揣进裤兜
-[Dm7]走到玉林路的尽头 [G]坐在小酒馆的门[C]口`
-  },
-  {
-    id: "nan-fang-gu-niang",
-    title: "南方姑娘",
-    versionTag: "C调夹2品 · 温柔弹唱",
-    artist: "赵雷",
-    baseKey: "C",
-    capo: "夹2品",
-    bpm: 68,
-    playable: "100%",
-    raw: `#主歌
-[C]北方的村庄 [G]住着一个[Am]南方的姑娘
-[F]她总是喜欢[G]穿着带花的[C]裙子站在路旁
-[C]她的话不多 [G]但笑起来是[Am]那么平静悠扬
-[F]她柔弱的眼[G]里装的是什么 [C]是思念的忧伤
-#副歌
-[C]南方的小镇 [G]阴雨的冬天[Am]没有北方冷
-[F]她不需要臃[G]肿的棉衣去[C]遮盖她似水的面容
-[C]她在来去的街[G]头留下影子[Am]芳香在回眸人的心头
-[Dm7]眨眼的时间 [G]芳香已飘散[C]影子已不见`
-  },
-  {
     id: "xu-ni",
     title: "虚拟",
     versionTag: "C调夹2品 · 简化好弹版",
     artist: "陈粒",
     baseKey: "C",
-    capo: "夹2品",
+    defaultCapo: 2,
+    origKey: "D",
     bpm: 68,
     playable: "96%",
     raw: `#主歌
@@ -667,15 +929,20 @@ const BUILTIN_CATALOG = [
   }
 ];
 
-// Initial user library starts with 3 core songs
-const INITIAL_LIB_IDS = ["cheng-ai-ying-g", "jue-dui-zhan-you", "qi-miao-neng-li-ge"];
-let songs = JSON.parse(localStorage.getItem("custom_songbook_v2") || "null") ||
-            BUILTIN_CATALOG.filter(s => INITIAL_LIB_IDS.includes(s.id));
+const INITIAL_LIB_IDS = ["cheng-ai-ying-g", "hu-guang-sheng", "wo-yao-ni", "cheng-du", "jue-dui-zhan-you"];
+let savedSongs = null;
+try {
+  savedSongs = JSON.parse(localStorage.getItem("custom_songbook_v3") || "null");
+} catch(e){}
+let songs = savedSongs || BUILTIN_CATALOG.filter(s => INITIAL_LIB_IDS.includes(s.id));
 
 let currentFilter = "all";
 let currentSong = songs[0];
-let semitoneShift = 0;
+let selectedPlayKey = currentSong.baseKey || "G";
+let selectedCapo = (typeof currentSong.defaultCapo === "number") ? currentSong.defaultCapo : 0;
 let isPlaying = false;
+let isCountingDown = false;
+let countdownTimerId = null;
 let metroOn = true;
 let loopSection = false;
 let currentLineIdx = 0;
@@ -714,36 +981,31 @@ function playClick(isStrong) {
   } catch(e){}
 }
 
-function strumChord(chordName) {
-  try {
-    ensureAudio();
-    const base = chordName.replace(/[^A-G#m7maj]/g, "");
-    const freqs = CHORD_FREQS[base] || CHORD_FREQS["G"];
-    freqs.forEach((f, i) => {
-      setTimeout(() => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = "triangle";
-        osc.frequency.value = f;
-        gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.1);
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.start(); osc.stop(audioCtx.currentTime + 1.15);
-      }, i * 38);
-    });
-  } catch(e){}
+function noteToIndex(note) {
+  return (NOTE_ALIASES[note] !== undefined) ? NOTE_ALIASES[note] : 0;
 }
 
+function getSemitoneShift() {
+  const baseIdx = noteToIndex(currentSong.baseKey || "G");
+  const targetIdx = noteToIndex(selectedPlayKey || "G");
+  return (targetIdx - baseIdx + 12) % 12;
+}
+
+function getActualSoundingKey() {
+  const playIdx = noteToIndex(selectedPlayKey || "G");
+  return NOTES[(playIdx + selectedCapo) % 12];
+}
+
+// ChordSheetJS-inspired chord parser & transposer (handles slash chords like G/B, Dm7, Fmaj7)
 function shiftChordName(chord, shift) {
   if (!shift) return chord;
-  return chord.replace(/^[A-G]#?/, (root) => {
-    const idx = NOTES.indexOf(root);
-    if (idx === -1) return root;
+  return chord.replace(/[A-G][#b]?/g, (root) => {
+    const idx = NOTE_ALIASES[root];
+    if (idx === undefined) return root;
     return NOTES[(idx + shift + 120) % 12];
   });
 }
 
-// Convert 2-line chord-over-lyric sheets into [Chord]lyric format automatically
 function normalizeSheetInput(raw) {
   const lines = raw.split(/\r?\n/);
   const out = [];
@@ -824,7 +1086,7 @@ function addFromCatalog(catId, evt) {
   const exists = songs.find(s => s.id === item.id);
   if (!exists) {
     songs.unshift(JSON.parse(JSON.stringify(item)));
-    localStorage.setItem("custom_songbook_v2", JSON.stringify(songs));
+    localStorage.setItem("custom_songbook_v3", JSON.stringify(songs));
     showToast(`✅ 已将《${item.title}》(${item.versionTag}) 加入我的曲库`);
   } else {
     showToast(`🎵《${item.title}》已在曲库中，正在打开...`);
@@ -839,7 +1101,6 @@ function renderLibrary() {
   const catSec = document.getElementById("catalogResultsSection");
   const catList = document.getElementById("catalogList");
 
-  // If user typed a search query, show searchable catalog items with 1-click "＋加入曲库"
   if (q.length > 0) {
     catSec.style.display = "block";
     catList.innerHTML = "";
@@ -883,6 +1144,36 @@ function renderLibrary() {
         catList.appendChild(card);
       });
     }
+  } else if (currentFilter !== "all") {
+    // When clicking artist pill (e.g. 赵雷 / 任素汐), also surface any catalog songs by that artist not yet in library
+    const extraMatches = BUILTIN_CATALOG.filter(s => s.artist === currentFilter && !songs.some(lib => lib.id === s.id));
+    if (extraMatches.length > 0) {
+      catSec.style.display = "block";
+      catList.innerHTML = "";
+      extraMatches.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "song-card";
+        card.onclick = () => {
+          addFromCatalog(item.id);
+          openSong(item.id);
+        };
+        card.innerHTML = `
+          <div class="song-card-left">
+            <div class="song-title">${item.title} <span class="song-artist">· ${item.artist}</span></div>
+            <div class="song-badges">
+              <span class="badge pink">${item.versionTag || (item.baseKey + '调')}</span>
+              <span class="badge">♩=${item.bpm} BPM</span>
+              <span class="badge">可弹 ${item.playable || '100%'}</span>
+            </div>
+            <div class="song-preview">${getPreviewLyric(item.raw)}</div>
+          </div>
+          <button class="add-lib-btn" onclick="addFromCatalog('${item.id}', event)">＋ 加入曲库</button>
+        `;
+        catList.appendChild(card);
+      });
+    } else {
+      catSec.style.display = "none";
+    }
   } else {
     catSec.style.display = "none";
   }
@@ -905,7 +1196,7 @@ function renderLibrary() {
       <div class="song-card-left">
         <div class="song-title">${s.title} <span class="song-artist">· ${s.artist}</span></div>
         <div class="song-badges">
-          <span class="badge pink">${s.versionTag || (s.baseKey + '调 · ' + s.capo)}</span>
+          <span class="badge pink">${s.versionTag || (s.baseKey + '调')}</span>
           <span class="badge">♩=${s.bpm} BPM</span>
           <span class="badge">可弹 ${s.playable || '100%'}</span>
         </div>
@@ -933,7 +1224,8 @@ function setFilter(f) {
 function openSong(id) {
   stopPlay();
   currentSong = songs.find(s => s.id === id) || BUILTIN_CATALOG.find(s => s.id === id) || songs[0];
-  semitoneShift = 0;
+  selectedPlayKey = currentSong.baseKey || "G";
+  selectedCapo = (typeof currentSong.defaultCapo === "number") ? currentSong.defaultCapo : 0;
   currentLineIdx = 0;
   document.getElementById("libraryView").classList.remove("active");
   document.getElementById("sheetView").classList.add("active");
@@ -949,15 +1241,19 @@ function backToLibrary() {
 
 function renderSongSheet() {
   const s = currentSong;
-  const activeKey = shiftChordName(s.baseKey, semitoneShift);
+  const shift = getSemitoneShift();
+  const soundingKey = getActualSoundingKey();
+  const playability = (PLAYABILITY_BY_KEY[selectedPlayKey] || "90% 常用").split(" ")[0];
+
   document.getElementById("stTitle").textContent = s.title;
   document.getElementById("stArtist").textContent = `${s.artist} · 4/4拍`;
-  document.getElementById("ctrlKey").innerHTML = `${activeKey}调 <span>›</span>`;
-  document.getElementById("ctrlCapo").textContent = semitoneShift === 0 ? s.capo : `已移调 (${semitoneShift > 0 ? '+'+semitoneShift : semitoneShift})`;
+  document.getElementById("ctrlKey").innerHTML = `${selectedPlayKey}调 <span>▾</span>`;
+  document.getElementById("ctrlCapo").innerHTML = selectedCapo === 0 ? `不夹 <span>▾</span>` : `夹${selectedCapo}品 <span>▾</span>`;
+  document.getElementById("ctrlPitch").textContent = `实际音高 ${soundingKey}调`;
   document.getElementById("ctrlBpm").innerHTML = `${s.bpm} <span>BPM</span>`;
-  document.getElementById("ctrlPlayable").innerHTML = `${s.playable || '100%'} <span>›</span>`;
+  document.getElementById("ctrlPlayable").innerHTML = `${playability} <span>＋5</span>`;
 
-  const parsed = parseRawSheet(s.raw, semitoneShift);
+  const parsed = parseRawSheet(s.raw, shift);
   const container = document.getElementById("sheetContainer");
   const secTabs = document.getElementById("secTabs");
   const chordStrip = document.getElementById("songChordStrip");
@@ -1006,7 +1302,6 @@ function renderSongSheet() {
         if (sg.chord) {
           chEl.dataset.chordIdx = String(chordCountInLine - 1);
           chEl.textContent = sg.chord;
-          chEl.onclick = (e) => { e.stopPropagation(); strumChord(sg.chord); };
         }
         const txEl = document.createElement("div");
         txEl.className = "tx";
@@ -1028,8 +1323,8 @@ function renderSongSheet() {
   uniqueChords.forEach(c => {
     const chip = document.createElement("span");
     chip.className = "chord-chip";
-    chip.textContent = `🔊 ${c}`;
-    chip.onclick = () => strumChord(c);
+    chip.textContent = c;
+    chip.onclick = () => openKeyModal();
     chordStrip.appendChild(chip);
   });
 
@@ -1065,12 +1360,10 @@ function updateActiveLineUI() {
     if (isPlaying) {
       activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-    // Sync bottom section tab highlight with current active line's section!
     const curSec = activeEl.dataset.section;
     document.querySelectorAll("#secTabs .sec-tab").forEach(tab => {
       tab.classList.toggle("active", tab.dataset.secTitle === curSec);
     });
-    // Pulse the active chord in the current line proportional to how many chords the line has
     document.querySelectorAll(".ch.pulse").forEach(el => el.classList.remove("pulse"));
     if (isPlaying) {
       const chordCount = parseInt(activeEl.dataset.chordCount || "4", 10);
@@ -1083,14 +1376,41 @@ function updateActiveLineUI() {
 }
 
 function togglePlay() {
-  if (isPlaying) {
+  if (isPlaying || isCountingDown) {
     stopPlay();
   } else {
-    startPlay();
+    startCountdownThenPlay();
   }
 }
 
-function startPlay() {
+// 3-second countdown buffer before scrolling/follow-along starts!
+function startCountdownThenPlay() {
+  isCountingDown = true;
+  let remaining = 3;
+  const btn = document.getElementById("playBtn");
+  const st = document.getElementById("beatStatus");
+  btn.classList.add("counting");
+  btn.innerHTML = `⏳ 准备倒数 ${remaining} 秒 (点此取消)`;
+  st.textContent = `预备 ${remaining} 秒...`;
+  playClick(true);
+
+  countdownTimerId = setInterval(() => {
+    remaining--;
+    if (remaining > 0) {
+      btn.innerHTML = `⏳ 准备倒数 ${remaining} 秒 (点此取消)`;
+      st.textContent = `预备 ${remaining} 秒...`;
+      playClick(false);
+    } else {
+      clearInterval(countdownTimerId);
+      countdownTimerId = null;
+      isCountingDown = false;
+      btn.classList.remove("counting");
+      startPlayActual();
+    }
+  }, 1000);
+}
+
+function startPlayActual() {
   isPlaying = true;
   document.getElementById("playBtn").innerHTML = "⏸ 暂停跟唱";
   document.getElementById("beatStatus").textContent = "随拍跟唱中";
@@ -1140,30 +1460,90 @@ function startPlay() {
 
 function stopPlay() {
   isPlaying = false;
+  isCountingDown = false;
+  if (countdownTimerId) { clearInterval(countdownTimerId); countdownTimerId = null; }
   if (timerId) { clearInterval(timerId); timerId = null; }
   const btn = document.getElementById("playBtn");
-  if (btn) btn.innerHTML = "▶ 开始随拍跟唱";
+  if (btn) {
+    btn.classList.remove("counting");
+    btn.innerHTML = "▶ 开始随拍跟唱";
+  }
   const st = document.getElementById("beatStatus");
   if (st) st.textContent = "点句子可跳拍";
 }
 
-function transposeKey() {
-  if (currentSong.title === "程艾影") {
-    semitoneShift = (semitoneShift === 0) ? 5 : 0;
-  } else {
-    semitoneShift = (semitoneShift + 1) % 12;
+// Yoopu-style Key & Capo Picker Modal (Direct tap, no cycling!)
+function openKeyModal() {
+  renderKeyModalUI();
+  document.getElementById("keyModal").classList.add("open");
+}
+
+function renderKeyModalUI() {
+  const keyGrid = document.getElementById("keyGrid");
+  const capoGrid = document.getElementById("capoGrid");
+  keyGrid.innerHTML = "";
+  capoGrid.innerHTML = "";
+
+  const MAIN_KEYS = ["G", "C", "D", "A", "E", "F", "Bb", "Eb"];
+  MAIN_KEYS.forEach(k => {
+    const btn = document.createElement("div");
+    btn.className = "key-btn" + (selectedPlayKey === k ? " active" : "");
+    btn.onclick = () => selectPlayKey(k);
+    const playText = PLAYABILITY_BY_KEY[k] || "80% 可弹";
+    btn.innerHTML = `
+      <div class="key-btn-main">${k}调指法</div>
+      <div class="key-btn-sub">${playText}</div>
+    `;
+    keyGrid.appendChild(btn);
+  });
+
+  for (let c = 0; c <= 7; c++) {
+    const btn = document.createElement("div");
+    btn.className = "capo-btn" + (selectedCapo === c ? " active" : "");
+    btn.textContent = c === 0 ? "不夹 (0品)" : `夹 ${c} 品`;
+    btn.onclick = () => selectCapoFret(c);
+    capoGrid.appendChild(btn);
   }
+
+  const sounding = getActualSoundingKey();
+  document.getElementById("modalPitchSummary").textContent =
+    `当前：${selectedPlayKey}调指法 · ${selectedCapo === 0 ? '变调夹不夹' : '变调夹夹 ' + selectedCapo + ' 品'}`;
+  document.getElementById("modalPitchDetail").textContent =
+    `实际演唱音高：${sounding}调 · 原谱默认：${currentSong.baseKey}调/${currentSong.defaultCapo ? '夹'+currentSong.defaultCapo+'品' : '不夹'}`;
+}
+
+function selectPlayKey(newKey) {
+  // Automatically suggest matching capo so pitch stays close to original song if original key is known
+  selectedPlayKey = newKey;
+  if (currentSong.origKey) {
+    const origIdx = noteToIndex(currentSong.origKey);
+    const playIdx = noteToIndex(newKey);
+    const suggestedCapo = (origIdx - playIdx + 12) % 12;
+    if (suggestedCapo <= 7) {
+      selectedCapo = suggestedCapo;
+    }
+  }
+  renderKeyModalUI();
+  renderSongSheet();
+}
+
+function selectCapoFret(fret) {
+  selectedCapo = fret;
+  renderKeyModalUI();
+  renderSongSheet();
+}
+
+function resetKeyAndCapo() {
+  selectedPlayKey = currentSong.baseKey || "G";
+  selectedCapo = (typeof currentSong.defaultCapo === "number") ? currentSong.defaultCapo : 0;
+  renderKeyModalUI();
   renderSongSheet();
 }
 
 function changeBpm(delta) {
   currentSong.bpm = Math.max(45, Math.min(150, currentSong.bpm + delta));
   document.getElementById("ctrlBpm").innerHTML = `${currentSong.bpm} <span>BPM</span>`;
-  if (isPlaying) { stopPlay(); startPlay(); }
-}
-
-function strumCurrentFirstChord() {
-  strumChord(shiftChordName(currentSong.baseKey, semitoneShift));
+  if (isPlaying) { stopPlay(); startPlayActual(); }
 }
 
 function toggleMetro() {
@@ -1198,22 +1578,6 @@ function openAddModal() {
   document.getElementById("addModal").classList.add("open");
 }
 
-function openChordModal() {
-  const grid = document.getElementById("chordGrid");
-  grid.innerHTML = "";
-  Object.keys(CHORD_FINGERS).forEach(ch => {
-    const card = document.createElement("div");
-    card.className = "chord-card";
-    card.onclick = () => strumChord(ch);
-    card.innerHTML = `
-      <div style="font-size:18px;font-weight:800;color:var(--accent);">${ch} 和弦 🔊</div>
-      <div style="font-size:12px;color:var(--text-sub);margin-top:4px;">${CHORD_FINGERS[ch]}</div>
-    `;
-    grid.appendChild(card);
-  });
-  document.getElementById("chordModal").classList.add("open");
-}
-
 function closeModals() {
   document.querySelectorAll(".modal-mask").forEach(el => el.classList.remove("open"));
 }
@@ -1222,21 +1586,26 @@ function saveNewSong() {
   const title = document.getElementById("newTitle").value.trim() || "未命名歌曲";
   const artist = document.getElementById("newArtist").value.trim() || "精选";
   const baseKey = document.getElementById("newKey").value.trim() || "G";
-  const capo = document.getElementById("newCapo").value.trim() || "不夹";
+  const capoStr = document.getElementById("newCapo").value.trim() || "不夹";
+  const capoMatch = capoStr.match(/(\d+)/);
+  const defaultCapo = capoMatch ? parseInt(capoMatch[1], 10) : 0;
   const bpm = parseInt(document.getElementById("newBpm").value, 10) || 70;
   const rawInput = document.getElementById("newSheet").value.trim() || "#主歌\n[G]示例歌词[D]示例歌词";
   const normalizedRaw = normalizeSheetInput(rawInput);
   const newSong = {
     id: "song-" + Date.now(),
-    title, artist, baseKey, capo,
-    versionTag: `${baseKey}调 · ${capo}`,
-    bpm, playable: "100%", raw: normalizedRaw
+    title, artist, baseKey, defaultCapo,
+    versionTag: `${baseKey}调 · ${capoStr}`,
+    bpm, playable: "100%",
+    raw: normalizedRaw
   };
   songs.unshift(newSong);
-  localStorage.setItem("custom_songbook_v2", JSON.stringify(songs));
+  BUILTIN_CATALOG.unshift(newSong);
+  localStorage.setItem("custom_songbook_v3", JSON.stringify(songs));
   closeModals();
-  showToast(`✅ 已将《${title}》保存进我的曲库`);
+  showToast(`✅ 已保存《${title}》到我的手机曲库`);
   renderLibrary();
+  openSong(newSong.id);
 }
 
 renderLibrary();
