@@ -505,7 +505,7 @@ body {
       <label class="form-lbl">支持：① [G]歌词 或 [G:2]指定拍数 ② 上行和弦、下行歌词双行谱</label>
       <textarea id="newSheet" class="form-area" placeholder="#主歌 1&#10;G        D        Em       C&#10;伍岚正和程艾影从上海到武汉&#10;或：&#10;[G]伍岚正[D]和程艾影从[Em]上海到[C]武汉"></textarea>
     </div>
-    <button class="btn-primary" style="width:100%;padding:12px;" id="saveCloudBtn" onclick="saveNewSong()">☁️ 保存并直接同步到曲库</button>
+    <button class="btn-primary" style="width:100%;padding:12px;" id="saveCloudBtn" onclick="saveNewSong()">💾 保存到本地曲库</button>
   </div>
 </div>
 
@@ -1877,11 +1877,7 @@ function saveNewSong() {
   renderArtistPills();
   renderLibrary();
   openSong(newSong.id);
-  showToast(`☁️ 正在把《${title}》同步到云端曲库...`);
-  pushSongToCloud(newSong).then(ok => {
-    if (ok) showToast(`✅ 《${title}》已保存并直接同步到曲库`);
-    else showToast(`✅ 已保存《${title}》到本地曲库`);
-  });
+  showToast(`✅ 已保存《${title}》到本地曲库`);
 }
 
 
@@ -2015,21 +2011,6 @@ function renderArtistPills() {
   pillBox.innerHTML = htmlPills;
 }
 
-const CLOUD_SYNC_TOPIC = "jimmybrst_songbook_sync_v7";
-
-async function pushSongToCloud(songObj) {
-  try {
-    const res = await fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}`, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ type: "upsert_song", song: songObj, ts: Date.now() })
-    });
-    return res.ok;
-  } catch (e) {
-    return false;
-  }
-}
-
 async function syncFromCloud() {
   let changed = 0;
   // 1. Pull permanent cloud_songs.json from GitHub API (instant, bypasses Pages build queue) + relative fallback
@@ -2053,52 +2034,10 @@ async function syncFromCloud() {
     } catch (e) {}
   }
 
-  // 2. Pull zero-config instant browser uploads from ntfy channel
-  try {
-    const r2 = await fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all`, { cache: "no-store" });
-    if (r2.ok) {
-      const text = await r2.text();
-      const lines = text.split("\n").filter(Boolean);
-      lines.forEach(line => {
-        try {
-          const evt = JSON.parse(line);
-          if (evt && evt.message) {
-            const payload = JSON.parse(evt.message);
-            if (payload && payload.song && mergeSongIntoLibrary(payload.song)) {
-              changed++;
-            } else if (Array.isArray(payload)) {
-              payload.forEach(s => { if (mergeSongIntoLibrary(s)) changed++; });
-            }
-          }
-        } catch (err) {}
-      });
-    }
-  } catch (e) {}
-
   if (changed > 0) {
     renderArtistPills();
     renderLibrary();
   }
-}
-
-function startLiveCloudSubscription() {
-  try {
-    if (typeof EventSource === "undefined") return;
-    const es = new EventSource(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/sse`);
-    es.onmessage = (e) => {
-      try {
-        const evt = JSON.parse(e.data);
-        if (evt && evt.message) {
-          const payload = JSON.parse(evt.message);
-          if (payload && payload.song && mergeSongIntoLibrary(payload.song)) {
-            renderArtistPills();
-            renderLibrary();
-            showToast(`🍒 曲库已自动同步新歌：《${payload.song.title}》`);
-          }
-        }
-      } catch (err) {}
-    };
-  } catch (e) {}
 }
 
 function checkUrlShareImport() {
@@ -2123,7 +2062,6 @@ renderArtistPills();
 renderLibrary();
 checkUrlShareImport();
 syncFromCloud();
-startLiveCloudSubscription();
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") syncFromCloud();
 });
